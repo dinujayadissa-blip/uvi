@@ -74,12 +74,36 @@ heroSearch.addEventListener('submit', (e) => {
   document.getElementById('destinations').scrollIntoView({ behavior: 'smooth' });
 });
 
-/* Contact form — front-end only confirmation */
+/* Contact form — client-side validation + honest demo confirmation */
 const contactForm = document.getElementById('contactForm');
 const formNote = document.getElementById('formNote');
+const cfName = document.getElementById('cfName');
+const cfEmail = document.getElementById('cfEmail');
+
+const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
 contactForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  formNote.textContent = "Thanks! We've noted your trip idea — check your inbox soon.";
+  formNote.classList.remove('success', 'error');
+
+  const name = cfName.value.trim();
+  const email = cfEmail.value.trim();
+
+  if (name.length < 2) {
+    formNote.textContent = 'Please enter your name.';
+    formNote.classList.add('error');
+    cfName.focus();
+    return;
+  }
+  if (!isValidEmail(email)) {
+    formNote.textContent = 'Please enter a valid email address.';
+    formNote.classList.add('error');
+    cfEmail.focus();
+    return;
+  }
+
+  // Demo only: nothing is sent or stored.
+  formNote.textContent = "Thanks! In a live version we'd email your custom itinerary. (Demo — nothing was sent.)";
+  formNote.classList.add('success');
   contactForm.reset();
 });
