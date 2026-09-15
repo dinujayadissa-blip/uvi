@@ -1,0 +1,58 @@
+[
+  {
+    "region": "New South Wales",
+    "name": "Sydney",
+    "cardClass": "card-sydney",
+    "icon": "🏙️",
+    "description": "The Opera House, Bondi's coastal walk, and a harbour that never stops sparkling."
+  },
+  {
+    "region": "Victoria",
+    "name": "Melbourne",
+    "cardClass": "card-melbourne",
+    "icon": "☕",
+    "description": "Laneway cafés, world-class galleries, and the gateway to the Great Ocean Road."
+  },
+  {
+    "region": "Queensland",
+    "name": "Great Barrier Reef",
+    "cardClass": "card-reef",
+    "icon": "🐠",
+    "description": "The world's largest reef system — snorkel, dive, or fly over reef and rainforest."
+  },
+  {
+    "region": "Northern Territory",
+    "name": "Uluru & Red Centre",
+    "cardClass": "card-uluru",
+    "icon": "🪨",
+    "description": "A sacred monolith glowing at sunset in the heart of the outback."
+  },
+  {
+    "region": "Queensland",
+    "name": "Gold Coast",
+    "cardClass": "card-goldcoast",
+    "icon": "🏄",
+    "description": "Golden beaches, theme parks, and a laid-back surf culture year-round."
+  },
+  {
+    "region": "Tasmania",
+    "name": "Tasmania",
+    "cardClass": "card-tasmania",
+    "icon": "🌲",
+    "description": "Wild wilderness, MONA's art, and some of the cleanest air on Earth."
+  },
+  {
+    "region": "Western Australia",
+    "name": "Perth & Margaret River",
+    "cardClass": "card-perth",
+    "icon": "🌅",
+    "description": "Sunset beaches, boutique wineries, and the most isolated big city on Earth."
+  },
+  {
+    "region": "Victoria",
+    "name": "Great Ocean Road",
+    "cardClass": "card-ocean-road",
+    "icon": "🚗",
+    "description": "The Twelve Apostles, rainforest drives, and one of the world's great road trips."
+  }
+]

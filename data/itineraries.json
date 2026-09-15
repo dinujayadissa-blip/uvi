@@ -1,0 +1,35 @@
+[
+  {
+    "id": "itin-1",
+    "label": "7 Days · East Coast Classic",
+    "days": [
+      { "day": "Day 1–2", "title": "Sydney", "desc": "Harbour Bridge climb, Opera House, ferry to Manly." },
+      { "day": "Day 3", "title": "Blue Mountains", "desc": "Day trip for eucalypt-blue vistas and the Three Sisters." },
+      { "day": "Day 4–5", "title": "Byron Bay", "desc": "Fly north for lighthouse walks, beaches and laid-back cafés." },
+      { "day": "Day 6–7", "title": "Gold Coast", "desc": "Surf lessons, theme parks, and hinterland rainforest." }
+    ]
+  },
+  {
+    "id": "itin-2",
+    "label": "10 Days · Reef & Red Centre",
+    "days": [
+      { "day": "Day 1–3", "title": "Cairns & the Reef", "desc": "Snorkel or dive the Great Barrier Reef, explore Daintree Rainforest." },
+      { "day": "Day 4", "title": "Fly to Uluru", "desc": "Settle into the outback, watch your first desert sunset." },
+      { "day": "Day 5–6", "title": "Uluru & Kata Tjuta", "desc": "Base walk at dawn, cultural centre, Field of Light at night." },
+      { "day": "Day 7–8", "title": "Kings Canyon", "desc": "Rim walk through ancient sandstone gorges." },
+      { "day": "Day 9–10", "title": "Alice Springs", "desc": "Desert Park, outback markets, and the flight home." }
+    ]
+  },
+  {
+    "id": "itin-3",
+    "label": "14 Days · Grand Tour",
+    "days": [
+      { "day": "Day 1–3", "title": "Sydney", "desc": "City icons, beaches, and a harbour cruise at sunset." },
+      { "day": "Day 4–5", "title": "Melbourne", "desc": "Laneways, galleries, and the Great Ocean Road." },
+      { "day": "Day 6–7", "title": "Great Ocean Road", "desc": "Twelve Apostles, Otway rainforest, coastal towns." },
+      { "day": "Day 8–9", "title": "Uluru", "desc": "Red Centre sunsets and Aboriginal cultural experiences." },
+      { "day": "Day 10–12", "title": "Cairns & the Reef", "desc": "Reef diving and Daintree Rainforest exploring." },
+      { "day": "Day 13–14", "title": "Gold Coast", "desc": "Beach days and theme parks before you fly home." }
+    ]
+  }
+]
