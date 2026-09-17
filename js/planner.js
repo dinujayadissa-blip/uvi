@@ -54,15 +54,11 @@
     return hits / spot.months.length;
   }
 
-  function scoreSpot(spot, interests, region, seasonMonths) {
+  function scoreSpot(spot, interests, seasonMonths) {
     let score = 0;
     const matched = spot.interests.filter((i) => interests.includes(i));
     score += matched.length * 3;
     if (interests.length === 0) score += 1; // no filter → keep everything in play
-    if (region && region !== 'any') {
-      if (spot.region === region) score += 4;
-      else score -= 3;
-    }
     score += seasonFit(spot, seasonMonths) * 3;
     return { score, matched };
   }
@@ -130,10 +126,16 @@
     const style = STYLE[styleKey] || STYLE.mid;
     const totalDays = LENGTH_DAYS[length] || 14;
 
+    // Strict region filter: when a specific region is chosen, only its
+    // destinations are eligible. "Anywhere" keeps the whole country in play.
+    const pool = (region && region !== 'any')
+      ? SPOTS.filter((s) => s.region === region)
+      : SPOTS;
+
     // Score & rank.
-    const ranked = SPOTS
+    const ranked = pool
       .map((spot) => {
-        const { score, matched } = scoreSpot(spot, interests, region, season.months);
+        const { score, matched } = scoreSpot(spot, interests, season.months);
         return Object.assign({}, spot, { _score: score, _matched: matched });
       })
       .filter((s) => s._score > -2)
