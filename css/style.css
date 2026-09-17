@@ -1,17 +1,18 @@
 /* ---------- Design tokens ---------- */
 :root{
-  --ochre: #c05a2c;
-  --ochre-dark: #9c4620;
-  --ocean: #0f6e6a;
-  --ocean-dark: #0a4f4c;
-  --sand: #f6ead9;
-  --sand-deep: #ecd9bd;
-  --ink: #24211d;
-  --ink-soft: #55524b;
-  --paper: #fffaf3;
-  --paper-alt: #fbf1e2;
-  --line: rgba(36,33,29,0.1);
-  --gold: #e0a03c;
+  /* Coastal Reef palette — ocean teal + deep navy, sandy neutrals, coral CTA */
+  --ochre: #d95a3c;        /* coral — primary CTA / accent */
+  --ochre-dark: #bd4a30;   /* coral, hover */
+  --ocean: #0e7c86;        /* teal — secondary accent */
+  --ocean-dark: #0a5760;   /* deep teal */
+  --sand: #dfeceb;         /* pale sea-mist sand */
+  --sand-deep: #cfe3e2;    /* deeper sea mist (chips) */
+  --ink: #10303a;          /* deep navy — text & headings */
+  --ink-soft: #4c5d64;     /* muted navy-grey */
+  --paper: #f9fbfb;        /* soft near-white */
+  --paper-alt: #eef5f4;    /* pale mist (alt sections) */
+  --line: rgba(16,48,58,0.1);
+  --gold: #e8b24d;         /* warm sand-gold pop */
   --radius-lg: 28px;
   --radius-md: 18px;
   --radius-sm: 12px;
@@ -97,7 +98,7 @@ input,select,textarea{ font-family: inherit; font-size: 1rem; }
   transition: background .3s ease, box-shadow .3s ease, padding .3s ease;
 }
 .site-header.scrolled{
-  background: rgba(255,250,243,0.9);
+  background: rgba(249,251,251,0.9);
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px rgba(36,33,29,0.08);
   padding: 12px 0;
@@ -138,7 +139,7 @@ input,select,textarea{ font-family: inherit; font-size: 1rem; }
   display:flex; align-items:center;
   padding-top: 110px;
   overflow: hidden;
-  background: linear-gradient(180deg, #fff8ee 0%, var(--sand) 100%);
+  background: linear-gradient(180deg, #eef6f6 0%, var(--sand) 100%);
 }
 .hero-bg{ position:absolute; inset:0; z-index:0; }
 .shape-sun{
