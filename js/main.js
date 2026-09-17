@@ -86,11 +86,16 @@ itinTabs.forEach(tab => {
   });
 });
 
-/* Hero search — scrolls to destinations, no backend */
+/* Hero search — seeds the trip planner and scrolls to it, no backend */
 const heroSearch = document.getElementById('heroSearch');
 heroSearch.addEventListener('submit', (e) => {
   e.preventDefault();
-  document.getElementById('destinations').scrollIntoView({ behavior: 'smooth' });
+  const length = document.getElementById('tripLength');
+  if (typeof window.__seedPlanner === 'function') {
+    window.__seedPlanner({ length: length ? length.value : null });
+  }
+  const target = document.getElementById('planner') || document.getElementById('destinations');
+  target.scrollIntoView({ behavior: 'smooth' });
 });
 
 /* Contact form — client-side validation + honest demo confirmation */
