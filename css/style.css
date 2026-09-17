@@ -226,14 +226,16 @@ select:focus-visible, textarea:focus-visible{
   height: 150px; display:flex; align-items:center; justify-content:center;
   font-size: 3rem;
 }
-.card-sydney .dest-media{ background: linear-gradient(135deg,#ffd9a0,#ff9d6c); }
-.card-melbourne .dest-media{ background: linear-gradient(135deg,#d8c9b8,#8a7361); }
-.card-reef .dest-media{ background: linear-gradient(135deg,#7fd8d1,#0f6e6a); }
-.card-uluru .dest-media{ background: linear-gradient(135deg,#f0a860,#c05a2c); }
-.card-goldcoast .dest-media{ background: linear-gradient(135deg,#ffe29a,#ff7e5f); }
+/* Destination tiles — coastal palette (teal/green for water & wild,
+   coral/gold for sun & coast), harmonised with the Coastal Reef theme. */
+.card-sydney .dest-media{ background: linear-gradient(135deg,#f6d9a2,#ef7d5f); }
+.card-melbourne .dest-media{ background: linear-gradient(135deg,#b7cccd,#3f5f63); }
+.card-reef .dest-media{ background: linear-gradient(135deg,#7fd8d1,#0e7c86); }
+.card-uluru .dest-media{ background: linear-gradient(135deg,#eaa066,#c0492e); }
+.card-goldcoast .dest-media{ background: linear-gradient(135deg,#ffe0a3,#ef7d5f); }
 .card-tasmania .dest-media{ background: linear-gradient(135deg,#a8d5ba,#2f6b4f); }
-.card-perth .dest-media{ background: linear-gradient(135deg,#ffb199,#e0a03c); }
-.card-ocean-road .dest-media{ background: linear-gradient(135deg,#9fd8e0,#0a4f4c); }
+.card-perth .dest-media{ background: linear-gradient(135deg,#f7c3a6,#e8b24d); }
+.card-ocean-road .dest-media{ background: linear-gradient(135deg,#9fd8e0,#0a5760); }
 .dest-body{ padding: 20px 22px 24px; }
 .dest-tag{ font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--ocean); }
 .dest-body h3{ margin: .3em 0 .3em; font-size: 1.3rem; }
