@@ -77,10 +77,11 @@
     <nav class="main-nav" id="mainNav">
       <a href="#destinations">Destinations</a>
       <a href="#itineraries">Itineraries</a>
+      <a href="#planner">Trip Planner</a>
       <a href="#experiences">Experiences</a>
       <a href="#essentials">Travel Essentials</a>
       <a href="#tips">Tips</a>
-      <a href="#contact" class="nav-cta">Start Planning</a>
+      <a href="#planner" class="nav-cta">Start Planning</a>
     </nav>
 
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mainNav">
@@ -284,6 +285,156 @@
     </div>
   </section>
 
+  <!-- TRIP PLANNER -->
+  <section id="planner" class="section section-planner">
+    <div class="container">
+      <p class="eyebrow reveal">Plan your trip</p>
+      <h2 class="reveal">Build a trip in 30 seconds</h2>
+      <p class="section-sub reveal">Tell us what you're into, how long you've got and when you're coming — we'll draft a route, suggest the best time to travel, and estimate a budget. No sign-up, nothing stored.</p>
+
+      <div class="planner-wrap reveal">
+        <form class="planner-form" id="plannerForm">
+          <fieldset class="planner-interests">
+            <legend>What are you into? <span class="planner-hint">(pick any)</span></legend>
+            <div class="planner-chips">
+              <label class="planner-chip"><input type="checkbox" name="interest" value="beaches"><span>🏖️ Beaches</span></label>
+              <label class="planner-chip"><input type="checkbox" name="interest" value="wildlife"><span>🐨 Wildlife</span></label>
+              <label class="planner-chip"><input type="checkbox" name="interest" value="outback"><span>🏜️ Outback</span></label>
+              <label class="planner-chip"><input type="checkbox" name="interest" value="cities"><span>🏙️ Cities</span></label>
+              <label class="planner-chip"><input type="checkbox" name="interest" value="food-wine"><span>🍷 Food &amp; Wine</span></label>
+              <label class="planner-chip"><input type="checkbox" name="interest" value="adventure"><span>🥾 Adventure</span></label>
+              <label class="planner-chip"><input type="checkbox" name="interest" value="nature"><span>🌲 Nature</span></label>
+              <label class="planner-chip"><input type="checkbox" name="interest" value="culture"><span>🎨 Culture</span></label>
+            </div>
+          </fieldset>
+
+          <div class="planner-grid">
+            <div class="planner-field">
+              <label for="planRegion">Region</label>
+              <select id="planRegion">
+                <option value="any">Anywhere in Australia</option>
+                <option value="New South Wales">New South Wales</option>
+                <option value="Victoria">Victoria</option>
+                <option value="Queensland">Queensland</option>
+                <option value="Northern Territory">Northern Territory</option>
+                <option value="Western Australia">Western Australia</option>
+                <option value="South Australia">South Australia</option>
+                <option value="Tasmania">Tasmania</option>
+              </select>
+            </div>
+            <div class="planner-field">
+              <label for="planLength">Trip length</label>
+              <select id="planLength">
+                <option>1 week</option>
+                <option selected>2 weeks</option>
+                <option>3+ weeks</option>
+              </select>
+            </div>
+            <div class="planner-field">
+              <label for="planSeason">When</label>
+              <select id="planSeason">
+                <option value="any">I'm flexible</option>
+                <option value="summer">Summer (Dec–Feb)</option>
+                <option value="autumn">Autumn (Mar–May)</option>
+                <option value="winter">Winter (Jun–Aug)</option>
+                <option value="spring">Spring (Sep–Nov)</option>
+              </select>
+            </div>
+            <div class="planner-field">
+              <label for="planBudget">Style</label>
+              <select id="planBudget">
+                <option value="budget">Budget</option>
+                <option value="mid" selected>Mid-range</option>
+                <option value="luxury">Luxury</option>
+              </select>
+            </div>
+            <div class="planner-field">
+              <label for="planTravellers">Travellers</label>
+              <input type="number" id="planTravellers" min="1" max="12" value="2" inputmode="numeric">
+            </div>
+            <div class="planner-field planner-submit">
+              <button type="submit" class="btn btn-primary btn-lg">Build my trip</button>
+            </div>
+          </div>
+        </form>
+
+        <div class="plan-result" id="planResult" hidden></div>
+
+        <noscript>
+          <p class="plan-empty">The trip planner needs JavaScript. Browse the ready-made
+            <a href="#itineraries">sample itineraries</a> above — they cover the same regions.</p>
+        </noscript>
+      </div>
+    </div>
+
+    <!-- Planner dataset (edit here; consumed by js/planner.js). perDay = mid-range
+         AUD per person: stay + food + activities + local transport. -->
+    <script type="application/json" id="plannerData">
+    [
+      { "name": "Sydney", "region": "New South Wales", "icon": "🏙️", "stay": 3, "perDay": 250,
+        "interests": ["cities", "beaches", "culture"], "months": [3,4,5,9,10,11,12,1,2],
+        "blurb": "Harbour icons, ocean pools and a ferry ride to Manly — the classic first stop.",
+        "highlights": ["Opera House & Harbour Bridge", "Bondi to Coogee coastal walk", "Ferry to Manly"] },
+      { "name": "Blue Mountains", "region": "New South Wales", "icon": "⛰️", "stay": 2, "perDay": 200,
+        "interests": ["nature", "adventure"], "months": [3,4,5,9,10,11],
+        "blurb": "Eucalypt-blue valleys, waterfalls and the Three Sisters, ninety minutes from Sydney.",
+        "highlights": ["Three Sisters lookout", "Scenic World rainforest walk", "Wentworth Falls track"] },
+      { "name": "Byron Bay", "region": "New South Wales", "icon": "🏄", "stay": 2, "perDay": 230,
+        "interests": ["beaches", "wildlife", "food-wine"], "months": [3,4,5,9,10,11,12,1,2],
+        "blurb": "Lighthouse walks, easy surf and Australia's most easterly point — whales pass May–Nov.",
+        "highlights": ["Cape Byron lighthouse walk", "Surf lessons at Main Beach", "Whale watching in season"] },
+      { "name": "Melbourne", "region": "Victoria", "icon": "☕", "stay": 3, "perDay": 240,
+        "interests": ["cities", "food-wine", "culture"], "months": [3,4,5,9,10,11,12,1,2],
+        "blurb": "Laneway coffee, galleries and live music — the country's café and arts capital.",
+        "highlights": ["Laneway café crawl", "NGV & street art", "Queen Victoria Market"] },
+      { "name": "Great Ocean Road", "region": "Victoria", "icon": "🚗", "stay": 2, "perDay": 220,
+        "interests": ["nature", "adventure", "beaches"], "months": [3,4,5,9,10,11,12,1,2],
+        "blurb": "One of the world's great coastal drives — the Twelve Apostles, rainforest and surf towns.",
+        "highlights": ["Twelve Apostles at sunset", "Otway rainforest & waterfalls", "Bells Beach surf"] },
+      { "name": "Great Barrier Reef (Cairns)", "region": "Queensland", "icon": "🐠", "stay": 3, "perDay": 280,
+        "interests": ["wildlife", "adventure", "nature"], "months": [5,6,7,8,9,10],
+        "blurb": "Snorkel or dive the world's largest reef, then head into the Daintree Rainforest.",
+        "highlights": ["Outer reef snorkel/dive day", "Daintree & Cape Tribulation", "Kuranda Scenic Railway"] },
+      { "name": "Whitsunday Islands", "region": "Queensland", "icon": "⛵", "stay": 3, "perDay": 300,
+        "interests": ["beaches", "adventure", "nature"], "months": [5,6,7,8,9,10],
+        "blurb": "Seventy-four islands, turquoise water and the silica sands of Whitehaven Beach.",
+        "highlights": ["Whitehaven Beach", "Sail the islands", "Snorkel the fringing reef"] },
+      { "name": "Gold Coast", "region": "Queensland", "icon": "🏖️", "stay": 2, "perDay": 230,
+        "interests": ["beaches", "cities", "adventure"], "months": [3,4,5,9,10,11,12,1,2],
+        "blurb": "Long surf beaches, theme parks and rainforest hinterland an hour inland.",
+        "highlights": ["Surfers Paradise beach", "Theme parks", "Lamington hinterland walks"] },
+      { "name": "Uluru & Red Centre", "region": "Northern Territory", "icon": "🪨", "stay": 3, "perDay": 320,
+        "interests": ["outback", "culture", "nature"], "months": [5,6,7,8,9],
+        "blurb": "A sacred monolith glowing at sunrise and sunset, deep in the desert heart of the country.",
+        "highlights": ["Uluru base walk at dawn", "Kata Tjuta & Kings Canyon", "Field of Light after dark"] },
+      { "name": "Kakadu National Park", "region": "Northern Territory", "icon": "🐊", "stay": 3, "perDay": 290,
+        "interests": ["outback", "wildlife", "nature", "culture"], "months": [5,6,7,8,9],
+        "blurb": "Wetlands, waterfalls and 20,000-year-old rock art across a vast World Heritage park.",
+        "highlights": ["Ubirr & Nourlangie rock art", "Yellow Water billabong cruise", "Jim Jim Falls"] },
+      { "name": "Tasmania", "region": "Tasmania", "icon": "🌲", "stay": 4, "perDay": 240,
+        "interests": ["nature", "adventure", "food-wine", "wildlife"], "months": [12,1,2,3,11],
+        "blurb": "Wild coastlines, Cradle Mountain, MONA and some of the cleanest air on Earth.",
+        "highlights": ["Cradle Mountain day walk", "MONA in Hobart", "Wineglass Bay, Freycinet"] },
+      { "name": "Perth & Margaret River", "region": "Western Australia", "icon": "🌅", "stay": 3, "perDay": 250,
+        "interests": ["cities", "food-wine", "beaches"], "months": [3,4,5,9,10,11,12,1,2],
+        "blurb": "Sunset beaches, quokkas on Rottnest, and cellar doors down in Margaret River.",
+        "highlights": ["Rottnest Island & quokkas", "Margaret River wineries", "Kings Park & Cottesloe"] },
+      { "name": "Ningaloo Reef", "region": "Western Australia", "icon": "🐋", "stay": 3, "perDay": 290,
+        "interests": ["wildlife", "adventure", "beaches", "nature"], "months": [3,4,5,6,7],
+        "blurb": "Swim with whale sharks off a reef you can reach straight from the beach.",
+        "highlights": ["Swim with whale sharks (Mar–Jul)", "Turquoise Bay snorkel", "Cape Range gorges"] },
+      { "name": "Adelaide & Barossa", "region": "South Australia", "icon": "🍇", "stay": 2, "perDay": 220,
+        "interests": ["food-wine", "cities", "culture"], "months": [3,4,5,9,10,11,12,1,2],
+        "blurb": "A relaxed festival city ringed by some of Australia's most famous wine country.",
+        "highlights": ["Barossa & Adelaide Hills cellars", "Central Market", "Beach sunset at Glenelg"] },
+      { "name": "Kangaroo Island", "region": "South Australia", "icon": "🦭", "stay": 2, "perDay": 260,
+        "interests": ["wildlife", "nature", "beaches"], "months": [3,4,5,9,10,11,12,1,2],
+        "blurb": "Sea lions, koalas and dramatic coast on a wildlife-packed island escape.",
+        "highlights": ["Seal Bay sea lions", "Remarkable Rocks", "Flinders Chase wildlife"] }
+    ]
+    </script>
+  </section>
+
   <!-- EXPERIENCES -->
   <section id="experiences" class="section">
     <div class="container">
@@ -432,6 +583,7 @@
         <h4>Explore</h4>
         <a href="#destinations">Destinations</a>
         <a href="#itineraries">Itineraries</a>
+        <a href="#planner">Trip Planner</a>
         <a href="#experiences">Experiences</a>
       </div>
       <div>
@@ -461,5 +613,6 @@
 <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
 <script src="js/main.js"></script>
+<script src="js/planner.js"></script>
 </body>
 </html>
