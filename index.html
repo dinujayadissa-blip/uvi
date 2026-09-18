@@ -55,19 +55,35 @@
         <img class="brand-mark" src="/images/icon.svg" alt="" width="28" height="28" />
         <span class="brand-name">Uvi</span>
       </a>
-      <nav class="nav" aria-label="Primary">
-        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
-          <span></span><span></span><span></span>
-        </button>
-        <ul class="nav-menu" id="nav-menu">
-          <li><a href="#explore">Explore</a></li>
-          <li><a href="#finder">Find</a></li>
-          <li><a href="#plan">Plan</a></li>
-          <li><a href="#trips">Trips</a></li>
-          <li><a href="#gear">Gear</a></li>
-          <li><a href="#community" class="nav-cta">Join</a></li>
-        </ul>
-      </nav>
+      <div class="header-right">
+        <nav class="nav" aria-label="Primary">
+          <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+          <ul class="nav-menu" id="nav-menu">
+            <li><a href="#explore">Explore</a></li>
+            <li><a href="#finder">Find</a></li>
+            <li><a href="#plan">Plan</a></li>
+            <li><a href="#trips">Trips</a></li>
+            <li><a href="#gear">Gear</a></li>
+            <li><a href="#community" class="nav-cta">Join</a></li>
+          </ul>
+        </nav>
+        <!-- Account area — revealed by auth.js only when Supabase is configured -->
+        <div class="account" id="account" hidden>
+          <button class="btn btn-ghost btn-sm" id="account-signin">Sign in</button>
+          <div class="account-menu" id="account-menu" hidden>
+            <button class="account-trigger" id="account-trigger" aria-haspopup="true" aria-label="Account menu">
+              <span class="avatar" id="account-avatar">U</span>
+            </button>
+            <div class="account-dropdown" id="account-dropdown" role="menu" hidden>
+              <p class="account-name" id="account-name"></p>
+              <button type="button" class="account-action" id="account-edit" role="menuitem">Edit profile</button>
+              <button type="button" class="account-action" id="account-signout" role="menuitem">Sign out</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -766,7 +782,68 @@
     </div>
   </footer>
 
+  <!-- Auth modal -->
+  <div class="modal-overlay" id="auth-modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+      <button class="modal-close" id="auth-close" aria-label="Close">&times;</button>
+      <h2 id="auth-title">Welcome back</h2>
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab active" data-mode="signin" role="tab" aria-selected="true">Sign in</button>
+        <button class="auth-tab" data-mode="signup" role="tab" aria-selected="false">Create account</button>
+      </div>
+      <button type="button" class="btn btn-google" id="auth-google">
+        <span aria-hidden="true">G</span> Continue with Google
+      </button>
+      <div class="auth-divider"><span>or with email</span></div>
+      <form id="auth-form" novalidate>
+        <label>Email
+          <input type="email" id="auth-email" autocomplete="email" required />
+        </label>
+        <label>Password
+          <input type="password" id="auth-password" autocomplete="current-password" minlength="8" required />
+        </label>
+        <button type="submit" class="btn btn-primary" id="auth-submit">Sign in</button>
+      </form>
+      <button type="button" class="btn-link" id="auth-forgot">Forgot password?</button>
+      <p class="auth-msg" id="auth-msg" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <!-- Profile / onboarding modal -->
+  <div class="modal-overlay" id="profile-modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="profile-title">
+      <button class="modal-close" id="profile-close" aria-label="Close">&times;</button>
+      <h2 id="profile-title">Set up your profile</h2>
+      <form id="profile-form" novalidate>
+        <label>Username
+          <input id="pf-username" pattern="[a-z0-9_]{3,20}" autocomplete="off" required
+                 placeholder="e.g. redcentre_rig" />
+        </label>
+        <label>Display name
+          <input id="pf-display" autocomplete="name" required placeholder="e.g. Jo from the Kimberley" />
+        </label>
+        <label>Home state
+          <select id="pf-state">
+            <option value="">Prefer not to say</option>
+            <option value="NSW">NSW</option><option value="VIC">VIC</option>
+            <option value="QLD">QLD</option><option value="SA">SA</option>
+            <option value="WA">WA</option><option value="TAS">TAS</option>
+            <option value="NT">NT</option><option value="ACT">ACT</option>
+          </select>
+        </label>
+        <label>Your rig (optional)
+          <input id="pf-rig" placeholder="e.g. 79 Series + off-road van" />
+        </label>
+        <button type="submit" class="btn btn-primary">Save profile</button>
+      </form>
+      <p class="auth-msg" id="profile-msg" aria-live="polite"></p>
+    </div>
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-BwHfrr4c9kmRkLw6iXFdzcdWV/PGkVgiIyIWLLlTSXzWQzxuSg4DiQUCpauz/EWjgk5TYQqX/kvn9pG1NpYfg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js" defer></script>
+  <script src="/js/config.js" defer></script>
+  <script src="/js/auth.js" defer></script>
   <script src="/js/main.js" defer></script>
 </body>
 </html>

@@ -178,8 +178,21 @@
         emailEl.focus();
         return;
       }
-      msgEl.textContent = "You're on the list — we'll be in touch as Uvi launches.";
-      signupForm.reset();
+      var success = "You're on the list — we'll be in touch as Uvi launches.";
+      if (typeof window.uviSaveSubscriber === 'function') {
+        msgEl.style.color = '';
+        msgEl.textContent = 'Adding you…';
+        window.uviSaveSubscriber(value).then(function () {
+          msgEl.textContent = success;
+          signupForm.reset();
+        }).catch(function () {
+          msgEl.style.color = '#f2c14e';
+          msgEl.textContent = 'Something went wrong — please try again.';
+        });
+      } else {
+        msgEl.textContent = success;
+        signupForm.reset();
+      }
     });
   }
 
