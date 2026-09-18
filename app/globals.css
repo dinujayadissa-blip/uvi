@@ -605,3 +605,61 @@ a:hover { text-decoration: underline; }
   .trip-panel.active { animation: none; }
   .btn:hover, .activity-card:hover, .finder-card:hover { transform: none; }
 }
+
+/* ==========================================================================
+   Standalone pages (privacy, 404, trips, profile)
+   ========================================================================== */
+.legal-wrap { max-width: 760px; margin: 0 auto; padding: 3rem 0 5rem; }
+.legal-wrap h1 { font-size: clamp(2rem, 4vw, 2.8rem); }
+.legal-wrap h2 { font-size: 1.4rem; margin-top: 2.4rem; }
+.legal-wrap p { color: var(--ink-soft); }
+.legal-wrap .updated { color: var(--ink-mute); font-size: .9rem; }
+.legal-wrap .back-home { display: inline-block; margin-bottom: 1.5rem; font-weight: 700; }
+.disclaimer { background: rgba(224,116,58,0.10); border-left: 4px solid var(--ochre);
+  padding: 16px 20px; border-radius: var(--radius-sm); margin: 1.5rem 0; color: var(--ink-soft); }
+
+.nf-wrap { min-height: 70vh; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; text-align: center; padding: 40px 24px; }
+.nf-emoji { font-size: 4.5rem; }
+.nf-wrap h1 { font-size: clamp(2rem, 6vw, 3.2rem); margin: .3em 0 .3em; }
+.nf-code { font-family: var(--font-display); color: var(--ochre); font-size: 1rem;
+  letter-spacing: .18em; text-transform: uppercase; margin: 0; }
+.nf-wrap p { max-width: 460px; font-size: 1.05rem; color: var(--ink-soft); margin-bottom: 2rem; }
+
+/* Trips + profile */
+.page-wrap { max-width: 960px; margin: 0 auto; padding: 2.5rem 0 5rem; }
+.page-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 2rem; }
+.page-head h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 0; }
+.page-head p { color: var(--ink-soft); margin: 0.3rem 0 0; }
+.trip-grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.trip-card { display: block; background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: transform .2s, border-color .2s; }
+.trip-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.2); text-decoration: none; }
+.trip-card-cover { aspect-ratio: 16 / 9; background: var(--panel-2); object-fit: cover; width: 100%; }
+.trip-card-cover.placeholder { display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
+.trip-card-body { padding: 1.1rem 1.25rem; }
+.trip-card-body h3 { font-size: 1.15rem; margin: 0 0 0.35rem; color: var(--ink); }
+.trip-card-body p { color: var(--ink-soft); font-size: 0.92rem; margin: 0; }
+.trip-card-meta { color: var(--gum); font-size: 0.82rem; font-weight: 600; margin-top: 0.6rem; }
+.empty-state { color: var(--ink-mute); padding: 2rem 0; }
+
+.trip-detail { max-width: 760px; }
+.trip-detail .trip-cover { width: 100%; border-radius: var(--radius); border: 1px solid var(--line); margin: 1rem 0 1.5rem; }
+.trip-detail .trip-body { color: var(--ink-soft); white-space: pre-wrap; line-height: 1.7; }
+.trip-byline { color: var(--gum); font-weight: 600; margin: 0.2rem 0 0; }
+.trip-stats { display: flex; gap: 1.25rem; flex-wrap: wrap; color: var(--ink-soft); font-size: 0.95rem; margin: 1rem 0; }
+.trip-gallery { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); margin-top: 1.5rem; }
+.trip-gallery img { border-radius: var(--radius-sm); border: 1px solid var(--line); aspect-ratio: 1; object-fit: cover; }
+
+.form-card { max-width: 640px; margin: 0 auto; background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--line); border-radius: var(--radius); padding: 1.75rem; }
+.form-card .field { display: grid; gap: 0.35rem; margin-bottom: 1rem; font-size: 0.9rem; color: var(--ink-soft); font-weight: 500; }
+.form-card input, .form-card textarea, .form-card select {
+  width: 100%; padding: 0.7rem 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--line);
+  background: rgba(0,0,0,0.25); color: var(--ink); font: inherit; font-size: 1rem; }
+.form-card input:focus, .form-card textarea:focus { border-color: var(--ochre); outline: none; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.waypoint-row { display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem; }
+.waypoint-row input { flex: 1; }
+.gate { max-width: 520px; margin: 3rem auto; text-align: center; color: var(--ink-soft); }
+@media (max-width: 560px) { .field-row { grid-template-columns: 1fr; } }

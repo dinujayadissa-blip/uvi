@@ -78,6 +78,30 @@ places. User-submitted places default to `pending` until a staff member sets
 `status = 'approved'` (curated-first). Until Supabase is configured the site
 uses the static `data/places.json` and shows reviews as "coming soon".
 
+## Phase C — trips, waypoints & photos (Next.js)
+
+The site is now a **Next.js app** (App Router). Public pages (home, `/trips`,
+`/trips/[id]`, `/u/[username]`) are server-rendered for SEO; auth and posting
+run client-side against Supabase.
+
+- `0004_phase_c_trips.sql` — `trips`, `trip_waypoints`, `media`; RLS + grants;
+  and Storage buckets (`photos`, `avatars`) with public-read / owner-write
+  policies. Applied by `supabase db push`.
+- Photos are resized and re-encoded to JPEG in the browser (which **strips GPS
+  EXIF**) before upload to the `photos` bucket.
+
+### Environment
+Set these in Vercel (Project → Settings → Environment Variables) and in a local
+`.env.local` (see `.env.example`):
+
+```
+NEXT_PUBLIC_SUPABASE_URL=https://YOURPROJECT.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOi...
+```
+
+Run locally with `npm run dev`; build with `npm run build`. Vercel auto-detects
+Next.js (`vercel.json` pins `framework: nextjs`).
+
 ## Next phases
-See `docs/backend-spec.md` for Phase C onward (media/photos, trips, social,
-groups, moderation).
+See `docs/backend-spec.md` for Phase D onward (social feed/follows/notifications,
+groups, moderation dashboard).
