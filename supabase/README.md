@@ -102,6 +102,21 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOi...
 Run locally with `npm run dev`; build with `npm run build`. Vercel auto-detects
 Next.js (`vercel.json` pins `framework: nextjs`).
 
+## Phase D — social (follows, likes, comments, notifications)
+
+`0005_phase_d_social.sql` adds `follows`, `likes`, `comments` and
+`notifications`, plus triggers that keep `trips.like_count` /
+`trips.comment_count` current and create in-app notifications (a new follow,
+like or comment notifies the recipient). RLS keeps notifications private to
+their recipient and the social graph public.
+
+Once applied: profiles get a **Follow** button and follower counts, trip pages
+get **likes and comments**, the header shows a **notifications bell**, and
+`/feed` shows trips from people you follow.
+
+Email digests of notifications are a later step — they need a scheduled Supabase
+Edge Function plus an email provider (Resend/Postmark), and aren't included here.
+
 ## Next phases
-See `docs/backend-spec.md` for Phase D onward (social feed/follows/notifications,
-groups, moderation dashboard).
+See `docs/backend-spec.md` for Phase E (groups) and Phase F (moderation
+dashboard, rate limiting, search).

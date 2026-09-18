@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { mediaUrl } from '@/lib/media';
+import TripSocial from '@/components/TripSocial';
 
 export const revalidate = 60;
 
@@ -80,6 +81,8 @@ export default async function TripPage({ params }) {
           ))}
         </div>
       )}
+
+      <TripSocial tripId={trip.id} initialLikes={trip.like_count || 0} initialComments={trip.comment_count || 0} />
     </div>
   );
 }

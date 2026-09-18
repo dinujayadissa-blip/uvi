@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { mediaUrl } from '@/lib/media';
+import FollowButton from '@/components/FollowButton';
 
 export const revalidate = 60;
 
@@ -26,6 +27,11 @@ export default async function ProfilePage({ params }) {
   const profile = await loadProfile(params.username);
   if (!profile) notFound();
 
+  const [{ count: followers }, { count: following }] = await Promise.all([
+    sb.from('follows').select('*', { count: 'exact', head: true }).eq('followee_id', profile.id),
+    sb.from('follows').select('*', { count: 'exact', head: true }).eq('follower_id', profile.id)
+  ]);
+
   const { data: trips } = await sb
     .from('trips')
     .select('id,title,summary,distance_km,days,cover_media')
@@ -45,8 +51,10 @@ export default async function ProfilePage({ params }) {
         <div>
           <h1>{profile.display_name}</h1>
           <p>@{profile.username}{profile.home_state ? ` · ${profile.home_state}` : ''}{profile.rig ? ` · ${profile.rig}` : ''}</p>
+          <p className="trip-card-meta">{followers || 0} followers · {following || 0} following</p>
           {profile.bio && <p style={{ marginTop: '0.5rem' }}>{profile.bio}</p>}
         </div>
+        <FollowButton profileId={profile.id} />
       </div>
 
       <h2 style={{ fontSize: '1.3rem', marginBottom: '1rem' }}>Trips</h2>

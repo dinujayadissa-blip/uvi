@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/components/AuthProvider';
+import NotificationsBell from '@/components/NotificationsBell';
 
 export default function Header() {
   const { configured, user, profile, openAuth, openProfileEdit, signOut } = useAuth() || {};
@@ -39,6 +40,8 @@ export default function Header() {
             </ul>
           </nav>
 
+          {configured && user && <NotificationsBell />}
+
           {configured && (
             <div className="account">
               {!user && (
@@ -54,6 +57,7 @@ export default function Header() {
                       <p className="account-name">
                         {profile ? `${profile.display_name} · @${profile.username}` : 'Finish your profile'}
                       </p>
+                      <Link className="account-action" href="/feed" role="menuitem" onClick={() => setMenuOpen(false)}>My feed</Link>
                       <Link className="account-action" href="/trips/new" role="menuitem" onClick={() => setMenuOpen(false)}>Share a trip</Link>
                       {profile && (
                         <Link className="account-action" href={`/u/${profile.username}`} role="menuitem" onClick={() => setMenuOpen(false)}>My profile</Link>
