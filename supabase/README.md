@@ -1,0 +1,122 @@
+# Uvi backend (Supabase) — Phase A setup
+
+Phase A adds **accounts** to the static Uvi site using Supabase (Postgres +
+Auth). Nothing here runs until you create a Supabase project and paste two
+public keys into `js/config.js`. Until then the site works as a static site and
+account features stay hidden.
+
+## 1. Create the project
+1. Sign up at <https://supabase.com> and create a new project (choose the
+   Sydney region for AU users).
+2. In **Settings → API**, copy the **Project URL** and the **anon public** key.
+
+## 2. Wire up the front end
+Edit `js/config.js` and replace the placeholders:
+
+```js
+window.UVI_CONFIG = {
+  supabaseUrl: 'https://YOURPROJECT.supabase.co',
+  supabaseAnonKey: 'eyJhbGciOi...'   // the anon/public key — safe to commit
+};
+```
+
+> The **anon key is public by design** — row-level security protects the data.
+> Never put the **service-role** key in front-end code.
+
+## 3. Apply the database migration
+Install the [Supabase CLI](https://supabase.com/docs/guides/cli), then:
+
+```bash
+supabase login
+supabase link --project-ref YOURPROJECTREF
+supabase db push        # applies supabase/migrations/0001_phase_a_foundation.sql
+```
+
+This creates `profiles` and `email_subscribers`, the `is_staff()` helper, and
+all row-level-security policies and grants.
+
+## 4. Configure Auth (Supabase dashboard)
+- **Authentication → URL Configuration**
+  - Site URL: your production URL (e.g. `https://uvi-uvi1.vercel.app`)
+  - Redirect URLs: add your production URL and `http://localhost:*` for local dev.
+- **Authentication → Providers**
+  - Email: enabled, with **Confirm email** on.
+  - Google: enable and paste your Google OAuth client ID/secret
+    (create them in Google Cloud Console; set the Supabase callback URL as an
+    authorised redirect URI).
+
+## 5. Make yourself an admin (optional, for later moderation)
+After you sign up and complete onboarding, run in the SQL editor:
+
+```sql
+update public.profiles set role = 'admin' where username = 'your_username';
+```
+
+## What Phase A delivers
+- Email/password + Google sign-in, email verification, password reset.
+- Username onboarding + profile edit (`profiles` table).
+- The "notify me" form now persists to `email_subscribers` (staff-readable only).
+
+## Phase B — places, reviews & bookmarks
+
+`supabase db push` applies these automatically (they're plain migrations):
+
+- `0002_phase_b_places.sql` — enables PostGIS; creates `places` (with a
+  geography column + rating rollup), `reviews`, and `bookmarks`; adds the
+  `nearby_places()` geo-search RPC; and RLS + grants for all three.
+- `0003_seed_places.sql` — loads the 24 curated finder locations as
+  **approved** places. Regenerate it after editing `data/places.json`:
+
+  ```bash
+  node tools/gen-seed.js && supabase db push
+  ```
+
+Once applied and keys are set, the map and list load **live** from Supabase
+(including any user-submitted places you approve), each place gets a detail
+view with **star ratings and reviews**, and signed-in users can **bookmark**
+places. User-submitted places default to `pending` until a staff member sets
+`status = 'approved'` (curated-first). Until Supabase is configured the site
+uses the static `data/places.json` and shows reviews as "coming soon".
+
+## Phase C — trips, waypoints & photos (Next.js)
+
+The site is now a **Next.js app** (App Router). Public pages (home, `/trips`,
+`/trips/[id]`, `/u/[username]`) are server-rendered for SEO; auth and posting
+run client-side against Supabase.
+
+- `0004_phase_c_trips.sql` — `trips`, `trip_waypoints`, `media`; RLS + grants;
+  and Storage buckets (`photos`, `avatars`) with public-read / owner-write
+  policies. Applied by `supabase db push`.
+- Photos are resized and re-encoded to JPEG in the browser (which **strips GPS
+  EXIF**) before upload to the `photos` bucket.
+
+### Environment
+Set these in Vercel (Project → Settings → Environment Variables) and in a local
+`.env.local` (see `.env.example`):
+
+```
+NEXT_PUBLIC_SUPABASE_URL=https://YOURPROJECT.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOi...
+```
+
+Run locally with `npm run dev`; build with `npm run build`. Vercel auto-detects
+Next.js (`vercel.json` pins `framework: nextjs`).
+
+## Phase D — social (follows, likes, comments, notifications)
+
+`0005_phase_d_social.sql` adds `follows`, `likes`, `comments` and
+`notifications`, plus triggers that keep `trips.like_count` /
+`trips.comment_count` current and create in-app notifications (a new follow,
+like or comment notifies the recipient). RLS keeps notifications private to
+their recipient and the social graph public.
+
+Once applied: profiles get a **Follow** button and follower counts, trip pages
+get **likes and comments**, the header shows a **notifications bell**, and
+`/feed` shows trips from people you follow.
+
+Email digests of notifications are a later step — they need a scheduled Supabase
+Edge Function plus an email provider (Resend/Postmark), and aren't included here.
+
+## Next phases
+See `docs/backend-spec.md` for Phase E (groups) and Phase F (moderation
+dashboard, rate limiting, search).

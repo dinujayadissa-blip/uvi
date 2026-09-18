@@ -1,0 +1,10 @@
+{
+  "freecamp": { "label": "Free & bush camps", "icon": "⛺", "color": "#6fbf9a" },
+  "park":     { "label": "National park sites", "icon": "🌳", "color": "#8fd694" },
+  "caravan":  { "label": "Caravan parks", "icon": "🚐", "color": "#7cc4d6" },
+  "track":    { "label": "4WD tracks", "icon": "🛤️", "color": "#e0743a" },
+  "fishing":  { "label": "Fishing spots", "icon": "🐟", "color": "#5aa9e6" },
+  "dump":     { "label": "Dump points", "icon": "🚽", "color": "#c98bdb" },
+  "water":    { "label": "Water refills", "icon": "💧", "color": "#4fd1c5" },
+  "fuel":     { "label": "Fuel stations", "icon": "⛽", "color": "#f2c14e" }
+}

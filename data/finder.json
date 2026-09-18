@@ -1,0 +1,14 @@
+[
+  { "icon": "⛺", "name": "Free & bush camps", "desc": "No-cost and low-cost sites away from the crowds." },
+  { "icon": "🌳", "name": "National park sites", "desc": "Bookable and first-come park campgrounds." },
+  { "icon": "🚐", "name": "Caravan parks", "desc": "Powered sites, amenities and family facilities." },
+  { "icon": "🛤️", "name": "4WD tracks", "desc": "Rated tracks with difficulty and current conditions." },
+  { "icon": "🚽", "name": "Dump points", "desc": "Empty grey and black water on the road." },
+  { "icon": "💧", "name": "Water refills", "desc": "Potable water top-ups for tanks and bottles." },
+  { "icon": "⛽", "name": "Fuel stations", "desc": "Diesel, petrol and remote-area fuel stops." },
+  { "icon": "🔧", "name": "Mechanics & repairs", "desc": "4WD, caravan and tyre specialists near you." },
+  { "icon": "🆘", "name": "Recovery services", "desc": "Winch-outs and roadside help when it counts." },
+  { "icon": "🐟", "name": "Fishing spots", "desc": "Land-based, boat and kayak-friendly locations." },
+  { "icon": "🐕", "name": "Dog-friendly sites", "desc": "Bring the whole family, four legs included." },
+  { "icon": "👨‍👩‍👧", "name": "Family-friendly", "desc": "Playgrounds, safe swimming and easy access." }
+]

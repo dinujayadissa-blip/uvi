@@ -1,0 +1,20 @@
+{
+  "name": "uvi",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Uvi — Australia's outdoor adventure hub",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "gen:seed": "node tools/gen-seed.js",
+    "gen:og": "node tools/gen-og.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4",
+    "next": "^14.2.15",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
