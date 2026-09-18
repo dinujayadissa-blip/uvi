@@ -9,9 +9,11 @@ export default async function sitemap() {
   ];
   const sb = getServerSupabase();
   if (sb) {
-    const { data } = await sb.from('trips').select('id,updated_at').eq('is_public', true).limit(1000);
-    (data || []).forEach((t) =>
-      routes.push({ url: `${BASE}/trips/${t.id}`, lastModified: t.updated_at, priority: 0.6 }));
+    try {
+      const { data } = await sb.from('trips').select('id,updated_at').eq('is_public', true).limit(1000);
+      (data || []).forEach((t) =>
+        routes.push({ url: `${BASE}/trips/${t.id}`, lastModified: t.updated_at, priority: 0.6 }));
+    } catch { /* sitemap falls back to static routes */ }
   }
   return routes;
 }

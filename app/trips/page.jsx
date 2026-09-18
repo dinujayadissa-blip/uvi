@@ -6,24 +6,29 @@ export const metadata = {
   title: 'Trips',
   description: 'Community trip reports and routes from across Australia — camps, tracks and road trips.'
 };
-export const revalidate = 60;
+// Render per-request so the build never depends on the DB being reachable.
+export const dynamic = 'force-dynamic';
 
 export default async function TripsPage() {
   const sb = getServerSupabase();
   let trips = [];
   const covers = {};
   if (sb) {
-    const { data } = await sb
-      .from('trips')
-      .select('id,title,summary,distance_km,days,cover_media, author:profiles(username,display_name)')
-      .eq('is_public', true)
-      .order('created_at', { ascending: false })
-      .limit(50);
-    trips = data || [];
-    const ids = trips.filter((t) => t.cover_media).map((t) => t.cover_media);
-    if (ids.length) {
-      const { data: m } = await sb.from('media').select('id,storage_path').in('id', ids);
-      (m || []).forEach((x) => { covers[x.id] = x.storage_path; });
+    try {
+      const { data } = await sb
+        .from('trips')
+        .select('id,title,summary,distance_km,days,cover_media, author:profiles(username,display_name)')
+        .eq('is_public', true)
+        .order('created_at', { ascending: false })
+        .limit(50);
+      trips = data || [];
+      const ids = trips.filter((t) => t.cover_media).map((t) => t.cover_media);
+      if (ids.length) {
+        const { data: m } = await sb.from('media').select('id,storage_path').in('id', ids);
+        (m || []).forEach((x) => { covers[x.id] = x.storage_path; });
+      }
+    } catch {
+      trips = [];
     }
   }
 

@@ -9,8 +9,12 @@ export const revalidate = 60;
 async function loadProfile(username) {
   const sb = getServerSupabase();
   if (!sb) return null;
-  const { data } = await sb.from('profiles').select('*').eq('username', username).maybeSingle();
-  return data;
+  try {
+    const { data } = await sb.from('profiles').select('*').eq('username', username).maybeSingle();
+    return data;
+  } catch {
+    return null;
+  }
 }
 
 export async function generateMetadata({ params }) {
@@ -27,23 +31,24 @@ export default async function ProfilePage({ params }) {
   const profile = await loadProfile(params.username);
   if (!profile) notFound();
 
-  const [{ count: followers }, { count: following }] = await Promise.all([
-    sb.from('follows').select('*', { count: 'exact', head: true }).eq('followee_id', profile.id),
-    sb.from('follows').select('*', { count: 'exact', head: true }).eq('follower_id', profile.id)
-  ]);
-
-  const { data: trips } = await sb
-    .from('trips')
-    .select('id,title,summary,distance_km,days,cover_media')
-    .eq('user_id', profile.id)
-    .eq('is_public', true)
-    .order('created_at', { ascending: false });
+  let followers = 0, following = 0, trips = [];
   const covers = {};
-  const ids = (trips || []).filter((t) => t.cover_media).map((t) => t.cover_media);
-  if (ids.length) {
-    const { data: m } = await sb.from('media').select('id,storage_path').in('id', ids);
-    (m || []).forEach((x) => { covers[x.id] = x.storage_path; });
-  }
+  try {
+    const [f1, f2, tr] = await Promise.all([
+      sb.from('follows').select('*', { count: 'exact', head: true }).eq('followee_id', profile.id),
+      sb.from('follows').select('*', { count: 'exact', head: true }).eq('follower_id', profile.id),
+      sb.from('trips').select('id,title,summary,distance_km,days,cover_media')
+        .eq('user_id', profile.id).eq('is_public', true).order('created_at', { ascending: false })
+    ]);
+    followers = f1.count || 0;
+    following = f2.count || 0;
+    trips = tr.data || [];
+    const ids = trips.filter((t) => t.cover_media).map((t) => t.cover_media);
+    if (ids.length) {
+      const { data: m } = await sb.from('media').select('id,storage_path').in('id', ids);
+      (m || []).forEach((x) => { covers[x.id] = x.storage_path; });
+    }
+  } catch { /* leave defaults */ }
 
   return (
     <div className="wrap page-wrap">

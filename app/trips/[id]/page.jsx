@@ -9,12 +9,16 @@ export const revalidate = 60;
 async function loadTrip(id) {
   const sb = getServerSupabase();
   if (!sb) return null;
-  const { data } = await sb
-    .from('trips')
-    .select('*, author:profiles(username,display_name)')
-    .eq('id', id)
-    .maybeSingle();
-  return data;
+  try {
+    const { data } = await sb
+      .from('trips')
+      .select('*, author:profiles(username,display_name)')
+      .eq('id', id)
+      .maybeSingle();
+    return data;
+  } catch {
+    return null;
+  }
 }
 
 export async function generateMetadata({ params }) {
@@ -32,10 +36,15 @@ export default async function TripPage({ params }) {
   const trip = await loadTrip(params.id);
   if (!trip) notFound();
 
-  const [{ data: waypoints }, { data: photos }] = await Promise.all([
-    sb.from('trip_waypoints').select('*').eq('trip_id', trip.id).order('seq'),
-    sb.from('media').select('id,storage_path,caption').eq('trip_id', trip.id).eq('status', 'active')
-  ]);
+  let waypoints = [], photos = [];
+  try {
+    const [wp, ph] = await Promise.all([
+      sb.from('trip_waypoints').select('*').eq('trip_id', trip.id).order('seq'),
+      sb.from('media').select('id,storage_path,caption').eq('trip_id', trip.id).eq('status', 'active')
+    ]);
+    waypoints = wp.data || [];
+    photos = ph.data || [];
+  } catch { /* leave empty */ }
   const coverPath = (photos || []).find((p) => p.id === trip.cover_media)?.storage_path;
   const gallery = (photos || []).filter((p) => p.id !== trip.cover_media);
   const bits = [trip.distance_km ? `${trip.distance_km.toLocaleString('en-AU')} km` : null,
