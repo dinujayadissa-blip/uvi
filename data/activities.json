@@ -1,0 +1,56 @@
+[
+  {
+    "id": "camping",
+    "icon": "🏕️",
+    "cardClass": "card-camping",
+    "name": "Camping & Outdoors",
+    "tagline": "National parks to hidden bush camps",
+    "description": "National park sites, free bush camps, beach and riverside spots, campfire cooking, stargazing and wildlife watching.",
+    "tags": ["Free camps", "Beach camping", "Bush camping", "Campfire cooking", "Stargazing"]
+  },
+  {
+    "id": "4wd",
+    "icon": "🚙",
+    "cardClass": "card-4wd",
+    "name": "4WD & Off-Road",
+    "tagline": "Tracks, sand, mud and river crossings",
+    "description": "Rated 4WD tracks, sand and beach driving, river crossings, recovery know-how, builds and accessories.",
+    "tags": ["Track ratings", "Sand driving", "River crossings", "Recovery", "Vehicle builds"]
+  },
+  {
+    "id": "caravan",
+    "icon": "🚐",
+    "cardClass": "card-caravan",
+    "name": "Caravan & Camper",
+    "tagline": "Tour, tow and live off-grid",
+    "description": "Caravan and camper touring, off-grid setups, solar and battery systems, towing routes and weight management.",
+    "tags": ["Off-grid setups", "Solar & battery", "Towing routes", "Van reviews", "Grey nomad"]
+  },
+  {
+    "id": "adventure",
+    "icon": "🏜️",
+    "cardClass": "card-adventure",
+    "name": "Adventure & Exploration",
+    "tagline": "Outback, coast and everything between",
+    "description": "Epic road trips, outback touring, hidden beaches, waterfalls, historic towns and multi-day expeditions.",
+    "tags": ["Road trips", "Outback", "Waterfalls", "Scenic drives", "Expeditions"]
+  },
+  {
+    "id": "fishing",
+    "icon": "🎣",
+    "cardClass": "card-fishing",
+    "name": "Fishing & On-Water",
+    "tagline": "Fresh, salt, beach and boat",
+    "description": "Freshwater and saltwater spots, beach and river fishing, kayak and boat adventures, camp-and-fish trips.",
+    "tags": ["Saltwater", "Freshwater", "Beach fishing", "Kayak fishing", "Boat trips"]
+  },
+  {
+    "id": "sports",
+    "icon": "🏃",
+    "cardClass": "card-sports",
+    "name": "Adventure Sports",
+    "tagline": "Ride, climb, paddle, run",
+    "description": "Mountain biking, trail running, rock climbing, canyoning, white-water rafting, dirt bikes and snow trips.",
+    "tags": ["MTB", "Trail running", "Climbing", "Canyoning", "Rafting"]
+  }
+]

@@ -1,0 +1,65 @@
+[
+  {
+    "id": "trip-biglap",
+    "label": "The Big Lap",
+    "meta": "3–12 months · ~15,000 km · Around Australia",
+    "days": [
+      { "day": "Stage 1", "title": "East Coast run", "desc": "Sydney to Cairns — beaches, reef and warm-weather camps to ease into van life." },
+      { "day": "Stage 2", "title": "Top End", "desc": "Cape York detour, Kakadu, Litchfield and Darwin before the Kimberley." },
+      { "day": "Stage 3", "title": "The West", "desc": "Broome, Ningaloo, Coral Coast and Perth — the best sunsets on the lap." },
+      { "day": "Stage 4", "title": "Nullarbor & south", "desc": "Cross the Nullarbor, take in the Great Ocean Road and finish along the south coast." }
+    ]
+  },
+  {
+    "id": "trip-capeyork",
+    "label": "Cape York",
+    "meta": "10–14 days · 4WD · Far North Queensland",
+    "days": [
+      { "day": "Day 1–3", "title": "Cairns to Cooktown", "desc": "Stock up, air down and tackle the coastal track past Cape Tribulation." },
+      { "day": "Day 4–7", "title": "The Old Telegraph Track", "desc": "Iconic creek crossings — Palm Creek, Gunshot and Nolans Brook." },
+      { "day": "Day 8–10", "title": "The Tip", "desc": "Stand at the northernmost point of the Australian mainland." },
+      { "day": "Day 11–14", "title": "Return via the OTT", "desc": "Fish the rivers, camp remote and retrace south at your own pace." }
+    ]
+  },
+  {
+    "id": "trip-gibb",
+    "label": "Gibb River Road",
+    "meta": "7–10 days · 4WD · The Kimberley, WA",
+    "days": [
+      { "day": "Day 1–2", "title": "Derby start", "desc": "Air down and roll into the Kimberley's red-dirt heart." },
+      { "day": "Day 3–5", "title": "Gorge country", "desc": "Windjana, Bell, Manning and Galvans — swim beneath waterfalls." },
+      { "day": "Day 6–8", "title": "El Questro", "desc": "Zebedee Springs, Emma Gorge and station camping." },
+      { "day": "Day 9–10", "title": "Finish at Kununurra", "desc": "Lake Argyle sunsets and a well-earned cold one." }
+    ]
+  },
+  {
+    "id": "trip-simpson",
+    "label": "Simpson Desert",
+    "meta": "6–8 days · Remote 4WD · Outback SA/QLD/NT",
+    "days": [
+      { "day": "Day 1–2", "title": "Prep at Birdsville", "desc": "Fuel, permits, sand flag and a Big Red warm-up run." },
+      { "day": "Day 3–5", "title": "1,100+ dunes", "desc": "Cross the parallel dunes convoy-style — the QAA and French lines." },
+      { "day": "Day 6–8", "title": "Dalhousie Springs", "desc": "Soak in the thermal springs and roll out to Mt Dare." }
+    ]
+  },
+  {
+    "id": "trip-highcountry",
+    "label": "Victorian High Country",
+    "meta": "4–6 days · 4WD · Victorian Alps",
+    "days": [
+      { "day": "Day 1–2", "title": "Mansfield to Craig's Hut", "desc": "Alpine tracks, mountain-cattlemen history and huge views." },
+      { "day": "Day 3–4", "title": "Wonnangatta & Blue Rag", "desc": "River-valley camps and the famous Blue Rag Range ridge run." },
+      { "day": "Day 5–6", "title": "Dargo & the Crooked River", "desc": "Historic gold country, creek crossings and quiet camps." }
+    ]
+  },
+  {
+    "id": "trip-kgari",
+    "label": "K'gari (Fraser Island)",
+    "meta": "3–5 days · Beach 4WD · Queensland",
+    "days": [
+      { "day": "Day 1", "title": "Barge across", "desc": "Air down for the world's largest sand island and hit 75 Mile Beach." },
+      { "day": "Day 2–3", "title": "Lakes & wrecks", "desc": "Lake McKenzie, Eli Creek and the Maheno shipwreck." },
+      { "day": "Day 4–5", "title": "Inland tracks", "desc": "Rainforest camps, Central Station and a final beach cruise." }
+    ]
+  }
+]

@@ -1,54 +1,81 @@
 #!/usr/bin/env node
 /**
- * Regenerates the destinations and itineraries markup in index.html from the
- * JSON in data/. Content lives in JSON; the HTML stays static (good for SEO
- * and no-JS resilience). Run after editing the data files:
+ * Regenerates the data-driven markup in index.html from the JSON in data/.
+ * Content lives in JSON; the HTML stays static (good for SEO and no-JS
+ * resilience). Run after editing any data file:
  *
  *   node build.js
+ *
+ * Sections are delimited in index.html by matching marker comments:
+ *   <!-- BUILD:<name>:start --> ... <!-- BUILD:<name>:end -->
  */
 const fs = require('fs');
 const path = require('path');
 
 const root = __dirname;
-const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const read = (f) => JSON.parse(fs.readFileSync(path.join(root, f), 'utf8'));
+const esc = (s) => String(s)
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;');
 
-const destinations = JSON.parse(fs.readFileSync(path.join(root, 'data/destinations.json'), 'utf8'));
-const itineraries = JSON.parse(fs.readFileSync(path.join(root, 'data/itineraries.json'), 'utf8'));
+const activities = read('data/activities.json');
+const finder = read('data/finder.json');
+const trips = read('data/trips.json');
+const gear = read('data/gear.json');
 
-const destHtml = destinations.map((d) => `        <article class="dest-card reveal ${d.cardClass}">
-          <div class="dest-media"><span class="dest-icon">${d.icon}</span></div>
-          <div class="dest-body">
-            <span class="dest-tag">${esc(d.region)}</span>
-            <h3>${esc(d.name)}</h3>
-            <p>${esc(d.description)}</p>
-          </div>
+/* ---- Activities grid ---- */
+const activitiesHtml = activities.map((a) => `        <article class="activity-card reveal ${a.cardClass}">
+          <span class="activity-icon" aria-hidden="true">${a.icon}</span>
+          <h3>${esc(a.name)}</h3>
+          <p class="activity-tagline">${esc(a.tagline)}</p>
+          <p>${esc(a.description)}</p>
+          <ul class="chip-row">${a.tags.map((t) => `<li class="chip">${esc(t)}</li>`).join('')}</ul>
         </article>`).join('\n\n');
 
-const tabsHtml = itineraries.map((it, i) =>
-  `        <button class="itin-tab${i === 0 ? ' active' : ''}" data-target="${it.id}" role="tab" aria-selected="${i === 0 ? 'true' : 'false'}">${esc(it.label)}</button>`
+/* ---- Finder grid ---- */
+const finderHtml = finder.map((f) => `        <article class="finder-card reveal">
+          <span class="finder-icon" aria-hidden="true">${f.icon}</span>
+          <h3>${esc(f.name)}</h3>
+          <p>${esc(f.desc)}</p>
+        </article>`).join('\n\n');
+
+/* ---- Trips: tabs + panels ---- */
+const tripTabs = trips.map((t, i) =>
+  `        <button class="trip-tab${i === 0 ? ' active' : ''}" data-target="${esc(t.id)}" role="tab" aria-selected="${i === 0 ? 'true' : 'false'}" aria-controls="${esc(t.id)}" id="tab-${esc(t.id)}">${esc(t.label)}</button>`
 ).join('\n');
 
-const panelsHtml = itineraries.map((it, i) => {
-  const items = it.days.map((d) =>
-    `            <li><span class="day">${d.day}</span><div><h4>${esc(d.title)}</h4><p>${esc(d.desc)}</p></div></li>`
+const tripPanels = trips.map((t, i) => {
+  const items = t.days.map((d) =>
+    `            <li><span class="day">${esc(d.day)}</span><div><h4>${esc(d.title)}</h4><p>${esc(d.desc)}</p></div></li>`
   ).join('\n');
-  return `        <div class="itin-panel${i === 0 ? ' active' : ''}" id="${it.id}">
+  return `        <div class="trip-panel${i === 0 ? ' active' : ''}" id="${esc(t.id)}" role="tabpanel" aria-labelledby="tab-${esc(t.id)}"${i === 0 ? '' : ' hidden'}>
+          <p class="trip-meta">${esc(t.meta)}</p>
           <ol class="timeline">
 ${items}
           </ol>
         </div>`;
 }).join('\n\n');
 
-const itinHtml = `      <div class="itin-tabs reveal" role="tablist">
-${tabsHtml}
+const tripsHtml = `      <div class="trip-tabs reveal" role="tablist" aria-label="Iconic Australian trips">
+${tripTabs}
       </div>
 
-      <div class="itin-panels">
+      <div class="trip-panels">
 
-${panelsHtml}
+${tripPanels}
 
       </div>`;
 
+/* ---- Gear grid ---- */
+const gearHtml = gear.map((g) => `        <article class="gear-card reveal">
+          <span class="gear-icon" aria-hidden="true">${g.icon}</span>
+          <h3>${esc(g.name)}</h3>
+          <ul>${g.items.map((it) => `<li>${esc(it)}</li>`).join('')}</ul>
+        </article>`).join('\n\n');
+
+/* ---- Inject ---- */
 const between = (name, body) => {
   const re = new RegExp(`(<!-- BUILD:${name}:start -->)[\\s\\S]*?(<!-- BUILD:${name}:end -->)`);
   return (src) => {
@@ -59,8 +86,10 @@ const between = (name, body) => {
 
 const indexPath = path.join(root, 'index.html');
 let html = fs.readFileSync(indexPath, 'utf8');
-html = between('destinations', destHtml)(html);
-html = between('itineraries', itinHtml)(html);
+html = between('activities', activitiesHtml)(html);
+html = between('finder', finderHtml)(html);
+html = between('trips', tripsHtml)(html);
+html = between('gear', gearHtml)(html);
 fs.writeFileSync(indexPath, html);
 
-console.log(`Built index.html from ${destinations.length} destinations and ${itineraries.length} itineraries.`);
+console.log(`Built index.html: ${activities.length} activities, ${finder.length} finder cards, ${trips.length} trips, ${gear.length} gear categories.`);

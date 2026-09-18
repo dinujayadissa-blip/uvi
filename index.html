@@ -1,465 +1,496 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en-AU">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>document.documentElement.className = document.documentElement.className.replace('no-js','js');</script>
-<title>Wander Australia — Plan Your Trip Down Under</title>
-<meta name="description" content="Your complete guide to traveling Australia: top destinations, sample itineraries, travel essentials, and insider tips for exploring the land down under.">
-<link rel="canonical" href="https://uvi-uvi1.vercel.app/">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Uvi — Australia's Outdoor Adventure Hub | Camp · 4WD · Caravan · Explore</title>
+  <meta name="description" content="Everything for the Australian outdoor lifestyle in one place — find free camps, caravan parks, 4WD tracks, dump points and fuel; plan trips with fuel and packing tools; and connect with the adventure community." />
+  <meta name="theme-color" content="#0f1c1a" />
+  <link rel="canonical" href="https://uvi-uvi1.vercel.app/" />
 
-<!-- Open Graph / social sharing (update the URLs to your real domain on deploy) -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wander Australia — Plan Your Trip Down Under">
-<meta property="og:description" content="Top destinations, ready-made itineraries, and everything you need to know before you travel Australia.">
-<meta property="og:image" content="https://uvi-uvi1.vercel.app/images/og-image.jpg">
-<meta property="og:url" content="https://uvi-uvi1.vercel.app/">
-<meta property="og:site_name" content="Wander Australia">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Wander Australia — Plan Your Trip Down Under">
-<meta name="twitter:description" content="Top destinations, ready-made itineraries, and everything you need to know before you travel Australia.">
-<meta name="twitter:image" content="https://uvi-uvi1.vercel.app/images/og-image.jpg">
-<meta name="theme-color" content="#c05a2c">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Uvi" />
+  <meta property="og:title" content="Uvi — Australia's Outdoor Adventure Hub" />
+  <meta property="og:description" content="Camping, 4WD, caravanning, fishing and road trips — discover, plan, explore and connect, all in one place." />
+  <meta property="og:url" content="https://uvi-uvi1.vercel.app/" />
+  <meta property="og:image" content="https://uvi-uvi1.vercel.app/images/og-image.jpg" />
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦘</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-<link rel="stylesheet" href="css/style.css">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Uvi — Australia's Outdoor Adventure Hub" />
+  <meta name="twitter:description" content="Camping, 4WD, caravanning, fishing and road trips — all in one place." />
+  <meta name="twitter:image" content="https://uvi-uvi1.vercel.app/images/og-image.jpg" />
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebSite",
-      "@id": "https://uvi-uvi1.vercel.app/#website",
-      "url": "https://uvi-uvi1.vercel.app/",
-      "name": "Wander Australia",
-      "description": "A complete guide to travelling Australia: destinations, itineraries, and travel essentials."
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://uvi-uvi1.vercel.app/#org",
-      "name": "Wander Australia",
-      "url": "https://uvi-uvi1.vercel.app/",
-      "logo": "https://uvi-uvi1.vercel.app/images/apple-touch-icon.png"
-    },
-    {
-      "@type": "ItemList",
-      "name": "Top destinations in Australia",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "item": { "@type": "TouristDestination", "name": "Sydney", "description": "Opera House, Bondi's coastal walk, and a sparkling harbour." } },
-        { "@type": "ListItem", "position": 2, "item": { "@type": "TouristDestination", "name": "Melbourne", "description": "Laneway cafes, galleries, and the gateway to the Great Ocean Road." } },
-        { "@type": "ListItem", "position": 3, "item": { "@type": "TouristDestination", "name": "Great Barrier Reef", "description": "The world's largest reef system for snorkelling and diving." } },
-        { "@type": "ListItem", "position": 4, "item": { "@type": "TouristDestination", "name": "Uluru and the Red Centre", "description": "A sacred monolith glowing at sunset in the outback." } },
-        { "@type": "ListItem", "position": 5, "item": { "@type": "TouristDestination", "name": "Tasmania", "description": "Wild wilderness, MONA's art, and some of the cleanest air on Earth." } }
-      ]
-    }
-  ]
-}
-</script>
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%F0%9F%A7%AD%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Uvi",
+    "url": "https://uvi-uvi1.vercel.app/",
+    "description": "Australia's outdoor adventure hub for camping, 4WD, caravanning, fishing and road trips.",
+    "inLanguage": "en-AU"
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<a href="#top" class="skip-link">Skip to content</a>
-
-<div class="progress-bar" id="progressBar"></div>
-
-<header class="site-header" id="siteHeader">
-  <div class="container header-inner">
-    <a href="#top" class="logo">
-      <span class="logo-mark">🦘</span>
-      <span class="logo-text">Wander<em>Australia</em></span>
-    </a>
-
-    <nav class="main-nav" id="mainNav">
-      <a href="#destinations">Destinations</a>
-      <a href="#itineraries">Itineraries</a>
-      <a href="#experiences">Experiences</a>
-      <a href="#essentials">Travel Essentials</a>
-      <a href="#tips">Tips</a>
-      <a href="#contact" class="nav-cta">Start Planning</a>
-    </nav>
-
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mainNav">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
-
-<div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
-
-<main id="top">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg" aria-hidden="true">
-      <div class="hero-shape shape-sun"></div>
-      <div class="hero-shape shape-wave"></div>
-      <div class="hero-dust"></div>
+  <header class="site-header" id="top">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Uvi home">
+        <span class="brand-mark" aria-hidden="true">🧭</span>
+        <span class="brand-name">Uvi</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#explore">Explore</a></li>
+          <li><a href="#finder">Find</a></li>
+          <li><a href="#plan">Plan</a></li>
+          <li><a href="#trips">Trips</a></li>
+          <li><a href="#gear">Gear</a></li>
+          <li><a href="#community" class="nav-cta">Join</a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="container hero-inner">
-      <p class="eyebrow reveal">Est. adventures since forever &middot; G'day, traveller</p>
-      <h1 class="reveal">Explore the vast <span class="text-accent">wonder</span> of Australia</h1>
-      <p class="hero-sub reveal">From the reef to the red centre, rainforests to rugged coastlines —
-        plan an unforgettable trip with curated destinations, ready-made itineraries, and everything
-        you need to know before you touch down.</p>
+  </header>
 
-      <form class="hero-search reveal" id="heroSearch">
-        <div class="field">
-          <label for="destInput">Where to?</label>
-          <input type="text" id="destInput" list="destList" placeholder="Sydney, Uluru, Great Barrier Reef…">
-          <datalist id="destList">
-            <option value="Sydney"></option>
-            <option value="Melbourne"></option>
-            <option value="Great Barrier Reef"></option>
-            <option value="Uluru"></option>
-            <option value="Gold Coast"></option>
-            <option value="Tasmania"></option>
-            <option value="Perth"></option>
-            <option value="Great Ocean Road"></option>
-          </datalist>
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Australia's outdoor adventure hub</p>
+        <h1>Camp. Drive. Explore.<br /><span class="accent">All in one place.</span></h1>
+        <p class="hero-lead">
+          Camping, 4WD, caravanning, fishing and road trips — Uvi brings the whole
+          Australian outdoor lifestyle together, so you can discover, plan, travel,
+          explore and connect without juggling a dozen apps.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#explore">Start exploring</a>
+          <a class="btn btn-ghost" href="#plan">Plan a trip</a>
         </div>
-        <div class="field">
-          <label for="tripLength">Trip length</label>
-          <select id="tripLength">
-            <option>1 week</option>
-            <option selected>2 weeks</option>
-            <option>3+ weeks</option>
-          </select>
+        <ul class="journey" aria-label="How Uvi works">
+          <li>Discover</li>
+          <li>Plan</li>
+          <li>Travel</li>
+          <li>Explore</li>
+          <li>Share</li>
+          <li>Connect</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- EXPLORE BY ACTIVITY -->
+    <section class="section" id="explore">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <h2>Explore by activity</h2>
+          <p>Whatever gets you outdoors, it lives here. Pick your kind of adventure.</p>
+        </header>
+        <div class="activity-grid">
+<!-- BUILD:activities:start -->
+
+        <article class="activity-card reveal card-camping">
+          <span class="activity-icon" aria-hidden="true">🏕️</span>
+          <h3>Camping &amp; Outdoors</h3>
+          <p class="activity-tagline">National parks to hidden bush camps</p>
+          <p>National park sites, free bush camps, beach and riverside spots, campfire cooking, stargazing and wildlife watching.</p>
+          <ul class="chip-row"><li class="chip">Free camps</li><li class="chip">Beach camping</li><li class="chip">Bush camping</li><li class="chip">Campfire cooking</li><li class="chip">Stargazing</li></ul>
+        </article>
+
+        <article class="activity-card reveal card-4wd">
+          <span class="activity-icon" aria-hidden="true">🚙</span>
+          <h3>4WD &amp; Off-Road</h3>
+          <p class="activity-tagline">Tracks, sand, mud and river crossings</p>
+          <p>Rated 4WD tracks, sand and beach driving, river crossings, recovery know-how, builds and accessories.</p>
+          <ul class="chip-row"><li class="chip">Track ratings</li><li class="chip">Sand driving</li><li class="chip">River crossings</li><li class="chip">Recovery</li><li class="chip">Vehicle builds</li></ul>
+        </article>
+
+        <article class="activity-card reveal card-caravan">
+          <span class="activity-icon" aria-hidden="true">🚐</span>
+          <h3>Caravan &amp; Camper</h3>
+          <p class="activity-tagline">Tour, tow and live off-grid</p>
+          <p>Caravan and camper touring, off-grid setups, solar and battery systems, towing routes and weight management.</p>
+          <ul class="chip-row"><li class="chip">Off-grid setups</li><li class="chip">Solar &amp; battery</li><li class="chip">Towing routes</li><li class="chip">Van reviews</li><li class="chip">Grey nomad</li></ul>
+        </article>
+
+        <article class="activity-card reveal card-adventure">
+          <span class="activity-icon" aria-hidden="true">🏜️</span>
+          <h3>Adventure &amp; Exploration</h3>
+          <p class="activity-tagline">Outback, coast and everything between</p>
+          <p>Epic road trips, outback touring, hidden beaches, waterfalls, historic towns and multi-day expeditions.</p>
+          <ul class="chip-row"><li class="chip">Road trips</li><li class="chip">Outback</li><li class="chip">Waterfalls</li><li class="chip">Scenic drives</li><li class="chip">Expeditions</li></ul>
+        </article>
+
+        <article class="activity-card reveal card-fishing">
+          <span class="activity-icon" aria-hidden="true">🎣</span>
+          <h3>Fishing &amp; On-Water</h3>
+          <p class="activity-tagline">Fresh, salt, beach and boat</p>
+          <p>Freshwater and saltwater spots, beach and river fishing, kayak and boat adventures, camp-and-fish trips.</p>
+          <ul class="chip-row"><li class="chip">Saltwater</li><li class="chip">Freshwater</li><li class="chip">Beach fishing</li><li class="chip">Kayak fishing</li><li class="chip">Boat trips</li></ul>
+        </article>
+
+        <article class="activity-card reveal card-sports">
+          <span class="activity-icon" aria-hidden="true">🏃</span>
+          <h3>Adventure Sports</h3>
+          <p class="activity-tagline">Ride, climb, paddle, run</p>
+          <p>Mountain biking, trail running, rock climbing, canyoning, white-water rafting, dirt bikes and snow trips.</p>
+          <ul class="chip-row"><li class="chip">MTB</li><li class="chip">Trail running</li><li class="chip">Climbing</li><li class="chip">Canyoning</li><li class="chip">Rafting</li></ul>
+        </article>
+
+<!-- BUILD:activities:end -->
         </div>
-        <button type="submit" class="btn btn-primary">Find your trip</button>
-      </form>
-
-      <div class="hero-stats reveal">
-        <div><strong>16,000+</strong><span>km of coastline</span></div>
-        <div><strong>19</strong><span>UNESCO World Heritage sites</span></div>
-        <div><strong>60,000</strong><span>years of living culture</span></div>
       </div>
-    </div>
-    <a href="#destinations" class="scroll-cue" aria-label="Scroll to explore">
-      <span></span>
-    </a>
-  </section>
+    </section>
 
-  <!-- DESTINATIONS -->
-  <section id="destinations" class="section">
-    <div class="container">
-      <p class="eyebrow reveal">Top destinations</p>
-      <h2 class="reveal">Where will your journey begin?</h2>
-      <p class="section-sub reveal">Eight iconic regions that capture the astonishing range of this continent — pick one, or string a few together.</p>
+    <!-- FINDER -->
+    <section class="section section-alt" id="finder">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <h2>Find anything on the road</h2>
+          <p>The essentials every traveller searches for — mapped and reviewed by the community.</p>
+        </header>
+        <div class="finder-grid">
+<!-- BUILD:finder:start -->
 
-      <div class="dest-grid">
-        <!-- BUILD:destinations:start -->
-
-        <article class="dest-card reveal card-sydney">
-          <div class="dest-media"><span class="dest-icon">🏙️</span></div>
-          <div class="dest-body">
-            <span class="dest-tag">New South Wales</span>
-            <h3>Sydney</h3>
-            <p>The Opera House, Bondi's coastal walk, and a harbour that never stops sparkling.</p>
-          </div>
+        <article class="finder-card reveal">
+          <span class="finder-icon" aria-hidden="true">⛺</span>
+          <h3>Free &amp; bush camps</h3>
+          <p>No-cost and low-cost sites away from the crowds.</p>
         </article>
 
-        <article class="dest-card reveal card-melbourne">
-          <div class="dest-media"><span class="dest-icon">☕</span></div>
-          <div class="dest-body">
-            <span class="dest-tag">Victoria</span>
-            <h3>Melbourne</h3>
-            <p>Laneway cafés, world-class galleries, and the gateway to the Great Ocean Road.</p>
-          </div>
+        <article class="finder-card reveal">
+          <span class="finder-icon" aria-hidden="true">🌳</span>
+          <h3>National park sites</h3>
+          <p>Bookable and first-come park campgrounds.</p>
         </article>
 
-        <article class="dest-card reveal card-reef">
-          <div class="dest-media"><span class="dest-icon">🐠</span></div>
-          <div class="dest-body">
-            <span class="dest-tag">Queensland</span>
-            <h3>Great Barrier Reef</h3>
-            <p>The world's largest reef system — snorkel, dive, or fly over reef and rainforest.</p>
-          </div>
+        <article class="finder-card reveal">
+          <span class="finder-icon" aria-hidden="true">🚐</span>
+          <h3>Caravan parks</h3>
+          <p>Powered sites, amenities and family facilities.</p>
         </article>
 
-        <article class="dest-card reveal card-uluru">
-          <div class="dest-media"><span class="dest-icon">🪨</span></div>
-          <div class="dest-body">
-            <span class="dest-tag">Northern Territory</span>
-            <h3>Uluru &amp; Red Centre</h3>
-            <p>A sacred monolith glowing at sunset in the heart of the outback.</p>
-          </div>
+        <article class="finder-card reveal">
+          <span class="finder-icon" aria-hidden="true">🛤️</span>
+          <h3>4WD tracks</h3>
+          <p>Rated tracks with difficulty and current conditions.</p>
         </article>
 
-        <article class="dest-card reveal card-goldcoast">
-          <div class="dest-media"><span class="dest-icon">🏄</span></div>
-          <div class="dest-body">
-            <span class="dest-tag">Queensland</span>
-            <h3>Gold Coast</h3>
-            <p>Golden beaches, theme parks, and a laid-back surf culture year-round.</p>
-          </div>
+        <article class="finder-card reveal">
+          <span class="finder-icon" aria-hidden="true">🚽</span>
+          <h3>Dump points</h3>
+          <p>Empty grey and black water on the road.</p>
         </article>
 
-        <article class="dest-card reveal card-tasmania">
-          <div class="dest-media"><span class="dest-icon">🌲</span></div>
-          <div class="dest-body">
-            <span class="dest-tag">Tasmania</span>
-            <h3>Tasmania</h3>
-            <p>Wild wilderness, MONA's art, and some of the cleanest air on Earth.</p>
-          </div>
+        <article class="finder-card reveal">
+          <span class="finder-icon" aria-hidden="true">💧</span>
+          <h3>Water refills</h3>
+          <p>Potable water top-ups for tanks and bottles.</p>
         </article>
 
-        <article class="dest-card reveal card-perth">
-          <div class="dest-media"><span class="dest-icon">🌅</span></div>
-          <div class="dest-body">
-            <span class="dest-tag">Western Australia</span>
-            <h3>Perth &amp; Margaret River</h3>
-            <p>Sunset beaches, boutique wineries, and the most isolated big city on Earth.</p>
-          </div>
+        <article class="finder-card reveal">
+          <span class="finder-icon" aria-hidden="true">⛽</span>
+          <h3>Fuel stations</h3>
+          <p>Diesel, petrol and remote-area fuel stops.</p>
         </article>
 
-        <article class="dest-card reveal card-ocean-road">
-          <div class="dest-media"><span class="dest-icon">🚗</span></div>
-          <div class="dest-body">
-            <span class="dest-tag">Victoria</span>
-            <h3>Great Ocean Road</h3>
-            <p>The Twelve Apostles, rainforest drives, and one of the world's great road trips.</p>
-          </div>
+        <article class="finder-card reveal">
+          <span class="finder-icon" aria-hidden="true">🔧</span>
+          <h3>Mechanics &amp; repairs</h3>
+          <p>4WD, caravan and tyre specialists near you.</p>
         </article>
 
-<!-- BUILD:destinations:end -->
+        <article class="finder-card reveal">
+          <span class="finder-icon" aria-hidden="true">🆘</span>
+          <h3>Recovery services</h3>
+          <p>Winch-outs and roadside help when it counts.</p>
+        </article>
+
+        <article class="finder-card reveal">
+          <span class="finder-icon" aria-hidden="true">🐟</span>
+          <h3>Fishing spots</h3>
+          <p>Land-based, boat and kayak-friendly locations.</p>
+        </article>
+
+        <article class="finder-card reveal">
+          <span class="finder-icon" aria-hidden="true">🐕</span>
+          <h3>Dog-friendly sites</h3>
+          <p>Bring the whole family, four legs included.</p>
+        </article>
+
+        <article class="finder-card reveal">
+          <span class="finder-icon" aria-hidden="true">👨‍👩‍👧</span>
+          <h3>Family-friendly</h3>
+          <p>Playgrounds, safe swimming and easy access.</p>
+        </article>
+
+<!-- BUILD:finder:end -->
+        </div>
+        <p class="section-note reveal">Live maps and community reviews are rolling out — <a href="#community">join the list</a> to get early access.</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ITINERARIES -->
-  <section id="itineraries" class="section section-alt">
-    <div class="container">
-      <p class="eyebrow reveal">Sample itineraries</p>
-      <h2 class="reveal">Ready-made routes, made flexible</h2>
-      <p class="section-sub reveal">Pick a starting point, then mix and match — every itinerary is a suggestion, not a rulebook.</p>
+    <!-- PLAN -->
+    <section class="section" id="plan">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <h2>Plan your trip</h2>
+          <p>Free tools that work right here in your browser — no sign-up, nothing to install.</p>
+        </header>
 
-      <!-- BUILD:itineraries:start -->
+        <div class="plan-grid">
+          <!-- Fuel calculator -->
+          <div class="tool-card reveal">
+            <h3>⛽ Fuel cost calculator</h3>
+            <p class="tool-sub">Estimate what the drive will cost in fuel.</p>
+            <form id="fuel-form" class="tool-form" novalidate>
+              <label>Distance (km)
+                <input type="number" id="fuel-distance" inputmode="decimal" min="0" step="any" placeholder="e.g. 1200" />
+              </label>
+              <label>Fuel use (L/100km)
+                <input type="number" id="fuel-economy" inputmode="decimal" min="0" step="any" placeholder="e.g. 12.5" />
+              </label>
+              <label>Fuel price ($/L)
+                <input type="number" id="fuel-price" inputmode="decimal" min="0" step="any" placeholder="e.g. 2.05" />
+              </label>
+              <label class="tool-check">
+                <input type="checkbox" id="fuel-return" />
+                Return trip (double distance)
+              </label>
+            </form>
+            <div class="tool-result" id="fuel-result" aria-live="polite">
+              <span class="result-label">Estimated fuel cost</span>
+              <strong class="result-value" id="fuel-cost">$0.00</strong>
+              <span class="result-detail" id="fuel-detail">Enter your trip details above.</span>
+            </div>
+          </div>
 
-      <div class="itin-tabs reveal" role="tablist">
-        <button class="itin-tab active" data-target="itin-1" role="tab" aria-selected="true">7 Days · East Coast Classic</button>
-        <button class="itin-tab" data-target="itin-2" role="tab" aria-selected="false">10 Days · Reef &amp; Red Centre</button>
-        <button class="itin-tab" data-target="itin-3" role="tab" aria-selected="false">14 Days · Grand Tour</button>
+          <!-- Packing checklist -->
+          <div class="tool-card reveal">
+            <h3>✅ Trip packing checklist</h3>
+            <p class="tool-sub">Tick as you pack — it saves in your browser.</p>
+            <div class="checklist" id="checklist" role="group" aria-label="Packing checklist"></div>
+            <div class="checklist-foot">
+              <span id="checklist-progress" aria-live="polite">0 of 0 packed</span>
+              <button type="button" class="btn-link" id="checklist-reset">Reset</button>
+            </div>
+          </div>
+
+          <!-- Check before you go -->
+          <div class="tool-card reveal">
+            <h3>🧭 Check before you go</h3>
+            <p class="tool-sub">Official sources for a safe, legal trip.</p>
+            <ul class="check-list">
+              <li><span aria-hidden="true">🌦️</span> Weather &amp; warnings — <a href="https://www.bom.gov.au/" target="_blank" rel="noopener">Bureau of Meteorology</a></li>
+              <li><span aria-hidden="true">🔥</span> Fire bans &amp; restrictions — check your state fire service</li>
+              <li><span aria-hidden="true">🚧</span> Road &amp; track closures — check your state roads authority</li>
+              <li><span aria-hidden="true">🌳</span> National park alerts &amp; bookings — state park websites</li>
+              <li><span aria-hidden="true">📋</span> Permits for remote crossings (e.g. desert parks)</li>
+            </ul>
+            <p class="tool-note">Always confirm conditions with the relevant local authority before you travel.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRIPS -->
+    <section class="section section-alt" id="trips">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <h2>Iconic Australian trips</h2>
+          <p>Big-ticket routes to inspire your next escape — tap a trip for the stages.</p>
+        </header>
+<!-- BUILD:trips:start -->
+
+      <div class="trip-tabs reveal" role="tablist" aria-label="Iconic Australian trips">
+        <button class="trip-tab active" data-target="trip-biglap" role="tab" aria-selected="true" aria-controls="trip-biglap" id="tab-trip-biglap">The Big Lap</button>
+        <button class="trip-tab" data-target="trip-capeyork" role="tab" aria-selected="false" aria-controls="trip-capeyork" id="tab-trip-capeyork">Cape York</button>
+        <button class="trip-tab" data-target="trip-gibb" role="tab" aria-selected="false" aria-controls="trip-gibb" id="tab-trip-gibb">Gibb River Road</button>
+        <button class="trip-tab" data-target="trip-simpson" role="tab" aria-selected="false" aria-controls="trip-simpson" id="tab-trip-simpson">Simpson Desert</button>
+        <button class="trip-tab" data-target="trip-highcountry" role="tab" aria-selected="false" aria-controls="trip-highcountry" id="tab-trip-highcountry">Victorian High Country</button>
+        <button class="trip-tab" data-target="trip-kgari" role="tab" aria-selected="false" aria-controls="trip-kgari" id="tab-trip-kgari">K'gari (Fraser Island)</button>
       </div>
 
-      <div class="itin-panels">
+      <div class="trip-panels">
 
-        <div class="itin-panel active" id="itin-1">
+        <div class="trip-panel active" id="trip-biglap" role="tabpanel" aria-labelledby="tab-trip-biglap">
+          <p class="trip-meta">3–12 months · ~15,000 km · Around Australia</p>
           <ol class="timeline">
-            <li><span class="day">Day 1–2</span><div><h4>Sydney</h4><p>Harbour Bridge climb, Opera House, ferry to Manly.</p></div></li>
-            <li><span class="day">Day 3</span><div><h4>Blue Mountains</h4><p>Day trip for eucalypt-blue vistas and the Three Sisters.</p></div></li>
-            <li><span class="day">Day 4–5</span><div><h4>Byron Bay</h4><p>Fly north for lighthouse walks, beaches and laid-back cafés.</p></div></li>
-            <li><span class="day">Day 6–7</span><div><h4>Gold Coast</h4><p>Surf lessons, theme parks, and hinterland rainforest.</p></div></li>
+            <li><span class="day">Stage 1</span><div><h4>East Coast run</h4><p>Sydney to Cairns — beaches, reef and warm-weather camps to ease into van life.</p></div></li>
+            <li><span class="day">Stage 2</span><div><h4>Top End</h4><p>Cape York detour, Kakadu, Litchfield and Darwin before the Kimberley.</p></div></li>
+            <li><span class="day">Stage 3</span><div><h4>The West</h4><p>Broome, Ningaloo, Coral Coast and Perth — the best sunsets on the lap.</p></div></li>
+            <li><span class="day">Stage 4</span><div><h4>Nullarbor &amp; south</h4><p>Cross the Nullarbor, take in the Great Ocean Road and finish along the south coast.</p></div></li>
           </ol>
         </div>
 
-        <div class="itin-panel" id="itin-2">
+        <div class="trip-panel" id="trip-capeyork" role="tabpanel" aria-labelledby="tab-trip-capeyork" hidden>
+          <p class="trip-meta">10–14 days · 4WD · Far North Queensland</p>
           <ol class="timeline">
-            <li><span class="day">Day 1–3</span><div><h4>Cairns &amp; the Reef</h4><p>Snorkel or dive the Great Barrier Reef, explore Daintree Rainforest.</p></div></li>
-            <li><span class="day">Day 4</span><div><h4>Fly to Uluru</h4><p>Settle into the outback, watch your first desert sunset.</p></div></li>
-            <li><span class="day">Day 5–6</span><div><h4>Uluru &amp; Kata Tjuta</h4><p>Base walk at dawn, cultural centre, Field of Light at night.</p></div></li>
-            <li><span class="day">Day 7–8</span><div><h4>Kings Canyon</h4><p>Rim walk through ancient sandstone gorges.</p></div></li>
-            <li><span class="day">Day 9–10</span><div><h4>Alice Springs</h4><p>Desert Park, outback markets, and the flight home.</p></div></li>
+            <li><span class="day">Day 1–3</span><div><h4>Cairns to Cooktown</h4><p>Stock up, air down and tackle the coastal track past Cape Tribulation.</p></div></li>
+            <li><span class="day">Day 4–7</span><div><h4>The Old Telegraph Track</h4><p>Iconic creek crossings — Palm Creek, Gunshot and Nolans Brook.</p></div></li>
+            <li><span class="day">Day 8–10</span><div><h4>The Tip</h4><p>Stand at the northernmost point of the Australian mainland.</p></div></li>
+            <li><span class="day">Day 11–14</span><div><h4>Return via the OTT</h4><p>Fish the rivers, camp remote and retrace south at your own pace.</p></div></li>
           </ol>
         </div>
 
-        <div class="itin-panel" id="itin-3">
+        <div class="trip-panel" id="trip-gibb" role="tabpanel" aria-labelledby="tab-trip-gibb" hidden>
+          <p class="trip-meta">7–10 days · 4WD · The Kimberley, WA</p>
           <ol class="timeline">
-            <li><span class="day">Day 1–3</span><div><h4>Sydney</h4><p>City icons, beaches, and a harbour cruise at sunset.</p></div></li>
-            <li><span class="day">Day 4–5</span><div><h4>Melbourne</h4><p>Laneways, galleries, and the Great Ocean Road.</p></div></li>
-            <li><span class="day">Day 6–7</span><div><h4>Great Ocean Road</h4><p>Twelve Apostles, Otway rainforest, coastal towns.</p></div></li>
-            <li><span class="day">Day 8–9</span><div><h4>Uluru</h4><p>Red Centre sunsets and Aboriginal cultural experiences.</p></div></li>
-            <li><span class="day">Day 10–12</span><div><h4>Cairns &amp; the Reef</h4><p>Reef diving and Daintree Rainforest exploring.</p></div></li>
-            <li><span class="day">Day 13–14</span><div><h4>Gold Coast</h4><p>Beach days and theme parks before you fly home.</p></div></li>
+            <li><span class="day">Day 1–2</span><div><h4>Derby start</h4><p>Air down and roll into the Kimberley's red-dirt heart.</p></div></li>
+            <li><span class="day">Day 3–5</span><div><h4>Gorge country</h4><p>Windjana, Bell, Manning and Galvans — swim beneath waterfalls.</p></div></li>
+            <li><span class="day">Day 6–8</span><div><h4>El Questro</h4><p>Zebedee Springs, Emma Gorge and station camping.</p></div></li>
+            <li><span class="day">Day 9–10</span><div><h4>Finish at Kununurra</h4><p>Lake Argyle sunsets and a well-earned cold one.</p></div></li>
+          </ol>
+        </div>
+
+        <div class="trip-panel" id="trip-simpson" role="tabpanel" aria-labelledby="tab-trip-simpson" hidden>
+          <p class="trip-meta">6–8 days · Remote 4WD · Outback SA/QLD/NT</p>
+          <ol class="timeline">
+            <li><span class="day">Day 1–2</span><div><h4>Prep at Birdsville</h4><p>Fuel, permits, sand flag and a Big Red warm-up run.</p></div></li>
+            <li><span class="day">Day 3–5</span><div><h4>1,100+ dunes</h4><p>Cross the parallel dunes convoy-style — the QAA and French lines.</p></div></li>
+            <li><span class="day">Day 6–8</span><div><h4>Dalhousie Springs</h4><p>Soak in the thermal springs and roll out to Mt Dare.</p></div></li>
+          </ol>
+        </div>
+
+        <div class="trip-panel" id="trip-highcountry" role="tabpanel" aria-labelledby="tab-trip-highcountry" hidden>
+          <p class="trip-meta">4–6 days · 4WD · Victorian Alps</p>
+          <ol class="timeline">
+            <li><span class="day">Day 1–2</span><div><h4>Mansfield to Craig's Hut</h4><p>Alpine tracks, mountain-cattlemen history and huge views.</p></div></li>
+            <li><span class="day">Day 3–4</span><div><h4>Wonnangatta &amp; Blue Rag</h4><p>River-valley camps and the famous Blue Rag Range ridge run.</p></div></li>
+            <li><span class="day">Day 5–6</span><div><h4>Dargo &amp; the Crooked River</h4><p>Historic gold country, creek crossings and quiet camps.</p></div></li>
+          </ol>
+        </div>
+
+        <div class="trip-panel" id="trip-kgari" role="tabpanel" aria-labelledby="tab-trip-kgari" hidden>
+          <p class="trip-meta">3–5 days · Beach 4WD · Queensland</p>
+          <ol class="timeline">
+            <li><span class="day">Day 1</span><div><h4>Barge across</h4><p>Air down for the world's largest sand island and hit 75 Mile Beach.</p></div></li>
+            <li><span class="day">Day 2–3</span><div><h4>Lakes &amp; wrecks</h4><p>Lake McKenzie, Eli Creek and the Maheno shipwreck.</p></div></li>
+            <li><span class="day">Day 4–5</span><div><h4>Inland tracks</h4><p>Rainforest camps, Central Station and a final beach cruise.</p></div></li>
           </ol>
         </div>
 
       </div>
 
-<!-- BUILD:itineraries:end -->
-    </div>
-  </section>
+<!-- BUILD:trips:end -->
+      </div>
+    </section>
 
-  <!-- EXPERIENCES -->
-  <section id="experiences" class="section">
-    <div class="container">
-      <p class="eyebrow reveal">Things to do</p>
-      <h2 class="reveal">Experiences you won't find anywhere else</h2>
+    <!-- GEAR -->
+    <section class="section" id="gear">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <h2>Gear guide</h2>
+          <p>The kit that makes the lifestyle work — from off-grid power to recovery.</p>
+        </header>
+        <div class="gear-grid">
+<!-- BUILD:gear:start -->
 
-      <div class="exp-grid">
-        <div class="exp-card reveal">
-          <span class="exp-icon">🐨</span>
-          <h3>Meet the wildlife</h3>
-          <p>Cuddle a koala, hand-feed kangaroos, and spot wombats, echidnas and platypuses in the wild.</p>
-        </div>
-        <div class="exp-card reveal">
-          <span class="exp-icon">🏝️</span>
-          <h3>Island-hop the coast</h3>
-          <p>Fraser Island's dingoes and dunes, the Whitsundays' turquoise water, Kangaroo Island's wildlife.</p>
-        </div>
-        <div class="exp-card reveal">
-          <span class="exp-icon">🎨</span>
-          <h3>First Nations culture</h3>
-          <p>60,000+ years of living heritage — guided Dreamtime walks, rock art, and cultural centres.</p>
-        </div>
-        <div class="exp-card reveal">
-          <span class="exp-icon">🍷</span>
-          <h3>Wine &amp; produce trails</h3>
-          <p>Barossa Valley, Margaret River and the Hunter Valley for world-class wine and farm-gate food.</p>
-        </div>
-        <div class="exp-card reveal">
-          <span class="exp-icon">🥾</span>
-          <h3>National parks &amp; hikes</h3>
-          <p>The Overland Track, Blue Mountains, and Karijini's ancient red gorges await hikers of all levels.</p>
-        </div>
-        <div class="exp-card reveal">
-          <span class="exp-icon">🌌</span>
-          <h3>Outback stargazing</h3>
-          <p>Some of the darkest skies on Earth — camp under the Milky Way in the Red Centre.</p>
+        <article class="gear-card reveal">
+          <span class="gear-icon" aria-hidden="true">🔋</span>
+          <h3>Power &amp; off-grid</h3>
+          <ul><li>Portable power stations</li><li>Lithium batteries</li><li>Solar panels</li><li>Inverters</li><li>DC-DC chargers</li></ul>
+        </article>
+
+        <article class="gear-card reveal">
+          <span class="gear-icon" aria-hidden="true">🪝</span>
+          <h3>Recovery &amp; 4WD</h3>
+          <ul><li>Recovery boards</li><li>Winches</li><li>Snatch straps</li><li>Air compressors</li><li>Tyre deflators</li></ul>
+        </article>
+
+        <article class="gear-card reveal">
+          <span class="gear-icon" aria-hidden="true">⛺</span>
+          <h3>Camp setup</h3>
+          <ul><li>Roof-top tents</li><li>Awnings</li><li>Outdoor kitchens</li><li>Camping fridges</li><li>Camp showers</li></ul>
+        </article>
+
+        <article class="gear-card reveal">
+          <span class="gear-icon" aria-hidden="true">📡</span>
+          <h3>Comms &amp; navigation</h3>
+          <ul><li>UHF radios</li><li>GPS &amp; offline maps</li><li>Satellite messengers</li><li>Starlink &amp; internet</li><li>Drones</li></ul>
+        </article>
+
+        <article class="gear-card reveal">
+          <span class="gear-icon" aria-hidden="true">💧</span>
+          <h3>Water &amp; living</h3>
+          <ul><li>Water tanks</li><li>Filtration systems</li><li>Portable toilets</li><li>Jerry cans</li><li>Wastewater bags</li></ul>
+        </article>
+
+        <article class="gear-card reveal">
+          <span class="gear-icon" aria-hidden="true">🛠️</span>
+          <h3>Vehicle &amp; touring</h3>
+          <ul><li>Suspension upgrades</li><li>All-terrain tyres</li><li>Bull bars</li><li>Long-range fuel tanks</li><li>Dual-battery systems</li></ul>
+        </article>
+
+<!-- BUILD:gear:end -->
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- TRAVEL ESSENTIALS -->
-  <section id="essentials" class="section section-alt">
-    <div class="container">
-      <p class="eyebrow reveal">Before you go</p>
-      <h2 class="reveal">Travel essentials</h2>
-      <p class="section-sub reveal">The practical stuff — sorted, so you can focus on the fun part.</p>
-
-      <div class="essentials-grid">
-        <div class="ess-card reveal">
-          <span class="ess-icon">🛂</span>
-          <h3>Visa &amp; entry</h3>
-          <p>Most visitors need an eVisitor or ETA visa, arranged online before departure. Apply at least a few weeks ahead.</p>
-        </div>
-        <div class="ess-card reveal">
-          <span class="ess-icon">☀️</span>
-          <h3>Best time to visit</h3>
-          <p>Seasons are flipped from the Northern Hemisphere. Sep–Nov and Mar–May offer mild weather nationwide.</p>
-        </div>
-        <div class="ess-card reveal">
-          <span class="ess-icon">💵</span>
-          <h3>Currency</h3>
-          <p>Australian Dollar (AUD). Cards are accepted almost everywhere — carry only a little cash for remote areas.</p>
-        </div>
-        <div class="ess-card reveal">
-          <span class="ess-icon">🚙</span>
-          <h3>Getting around</h3>
-          <p>Distances are huge — domestic flights save time. Renting a car is best for road trips and remote regions.</p>
-        </div>
-        <div class="ess-card reveal">
-          <span class="ess-icon">🩹</span>
-          <h3>Health &amp; safety</h3>
-          <p>Tap water is safe to drink. Sun protection is essential — the UV index runs high nearly year-round.</p>
-        </div>
-        <div class="ess-card reveal">
-          <span class="ess-icon">🔌</span>
-          <h3>Plugs &amp; power</h3>
-          <p>Type I plug, 230V. Bring an adapter — most other regions' plugs won't fit.</p>
-        </div>
+    <!-- COMMUNITY -->
+    <section class="section section-cta" id="community">
+      <div class="wrap community-inner reveal">
+        <h2>Join the community</h2>
+        <p>
+          Share trip routes, photos and reviews, swap track warnings and road updates,
+          and organise group trips with travellers who get it. We're building the
+          social side of Uvi now — be first in.
+        </p>
+        <form class="signup" id="signup-form" novalidate>
+          <label class="sr-only" for="signup-email">Email address</label>
+          <input type="email" id="signup-email" name="email" placeholder="you@example.com" required autocomplete="email" />
+          <button type="submit" class="btn btn-primary">Notify me</button>
+        </form>
+        <p class="signup-msg" id="signup-msg" aria-live="polite"></p>
+        <ul class="community-tags" aria-label="What the community shares">
+          <li>🗺️ Trip routes</li>
+          <li>📍 Hidden spots</li>
+          <li>📸 Photos</li>
+          <li>⭐ Reviews</li>
+          <li>⚠️ Track warnings</li>
+          <li>🚙 Vehicle builds</li>
+          <li>🍳 Camp recipes</li>
+          <li>🎣 Catches</li>
+        </ul>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- TIPS -->
-  <section id="tips" class="section">
-    <div class="container">
-      <p class="eyebrow reveal">Insider tips</p>
-      <h2 class="reveal">Travel like a local</h2>
-
-      <div class="tips-list">
-        <div class="tip reveal">
-          <span class="tip-num">01</span>
-          <p>Book Uluru, the Whitsundays and Tasmania's Overland Track well ahead in peak season (Jun–Aug for the north, Dec–Feb for the south).</p>
-        </div>
-        <div class="tip reveal">
-          <span class="tip-num">02</span>
-          <p>Tipping isn't expected — service staff are paid a fair wage. Round up or tip ~10% only for exceptional service.</p>
-        </div>
-        <div class="tip reveal">
-          <span class="tip-num">03</span>
-          <p>Always swim between the red and yellow flags at patrolled beaches — surf conditions can change fast.</p>
-        </div>
-        <div class="tip reveal">
-          <span class="tip-num">04</span>
-          <p>Outback driving means fuel stops can be 200km+ apart. Fill up whenever you can and carry extra water.</p>
-        </div>
-        <div class="tip reveal">
-          <span class="tip-num">05</span>
-          <p>Public transport apps (like Opal in Sydney, Myki in Melbourne) make city-hopping simple and cashless.</p>
-        </div>
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div class="footer-brand">
+        <span class="brand-mark" aria-hidden="true">🧭</span>
+        <span class="brand-name">Uvi</span>
+        <p>Australia's outdoor adventure hub.</p>
       </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="#explore">Explore</a>
+        <a href="#finder">Find</a>
+        <a href="#plan">Plan</a>
+        <a href="#trips">Trips</a>
+        <a href="#gear">Gear</a>
+        <a href="#community">Join</a>
+        <a href="/privacy.html">Privacy</a>
+      </nav>
     </div>
-  </section>
-
-  <!-- CONTACT / NEWSLETTER -->
-  <section id="contact" class="section section-cta">
-    <div class="container cta-inner">
-      <span class="demo-badge reveal">Demo</span>
-      <h2 class="reveal">Get a free custom itinerary in your inbox</h2>
-      <p class="section-sub reveal">Tell us a little about your trip and we'll send tailored destination and route ideas.</p>
-
-      <form class="contact-form reveal" id="contactForm" novalidate>
-        <div class="form-row">
-          <input type="text" id="cfName" name="name" placeholder="Your name" autocomplete="name" required minlength="2" aria-label="Your name">
-          <input type="email" id="cfEmail" name="email" placeholder="Your email" autocomplete="email" required aria-label="Your email">
-        </div>
-        <textarea id="cfMessage" name="message" rows="3" placeholder="What kind of trip are you dreaming of? (beaches, outback, cities, wildlife...)" aria-label="Your trip idea"></textarea>
-        <button type="submit" class="btn btn-primary btn-lg">Send me ideas</button>
-        <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
-        <p class="form-legal">This is a demonstration site — the form does not send or store any data.
-          See our <a href="privacy.html">Privacy Policy</a> for how a live version would handle your details.</p>
-      </form>
+    <div class="wrap footer-legal">
+      <p>&copy; <span id="year">2026</span> Uvi. Made for Australian adventurers. Always travel safely and respect the land.</p>
     </div>
-  </section>
+  </footer>
 
-</main>
-
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <div class="footer-brand">
-      <a href="#top" class="logo"><span class="logo-mark">🦘</span><span class="logo-text">Wander<em>Australia</em></span></a>
-      <p>An independent guide to travelling Australia — built by explorers, for explorers.</p>
-    </div>
-    <div class="footer-cols">
-      <div>
-        <h4>Explore</h4>
-        <a href="#destinations">Destinations</a>
-        <a href="#itineraries">Itineraries</a>
-        <a href="#experiences">Experiences</a>
-      </div>
-      <div>
-        <h4>Plan</h4>
-        <a href="#essentials">Travel Essentials</a>
-        <a href="#tips">Tips</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div>
-        <h4>Follow</h4>
-        <a href="#" aria-label="Instagram">Instagram</a>
-        <a href="#" aria-label="Pinterest">Pinterest</a>
-        <a href="#" aria-label="YouTube">YouTube</a>
-      </div>
-    </div>
-  </div>
-  <div class="container footer-bottom">
-    <nav class="footer-legal" aria-label="Legal">
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="privacy.html#terms">Terms of Use</a>
-      <a href="privacy.html#cookies">Cookie Notice</a>
-    </nav>
-    <p>&copy; <span id="year"></span> Wander Australia — a demo project. Made for travellers with wanderlust.</p>
-  </div>
-</footer>
-
-<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
-
-<script src="js/main.js"></script>
+  <script src="/js/main.js" defer></script>
 </body>
 </html>

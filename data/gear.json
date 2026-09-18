@@ -1,0 +1,38 @@
+[
+  {
+    "id": "power",
+    "icon": "🔋",
+    "name": "Power & off-grid",
+    "items": ["Portable power stations", "Lithium batteries", "Solar panels", "Inverters", "DC-DC chargers"]
+  },
+  {
+    "id": "recovery",
+    "icon": "🪝",
+    "name": "Recovery & 4WD",
+    "items": ["Recovery boards", "Winches", "Snatch straps", "Air compressors", "Tyre deflators"]
+  },
+  {
+    "id": "camp",
+    "icon": "⛺",
+    "name": "Camp setup",
+    "items": ["Roof-top tents", "Awnings", "Outdoor kitchens", "Camping fridges", "Camp showers"]
+  },
+  {
+    "id": "comms",
+    "icon": "📡",
+    "name": "Comms & navigation",
+    "items": ["UHF radios", "GPS & offline maps", "Satellite messengers", "Starlink & internet", "Drones"]
+  },
+  {
+    "id": "water",
+    "icon": "💧",
+    "name": "Water & living",
+    "items": ["Water tanks", "Filtration systems", "Portable toilets", "Jerry cans", "Wastewater bags"]
+  },
+  {
+    "id": "vehicle",
+    "icon": "🛠️",
+    "name": "Vehicle & touring",
+    "items": ["Suspension upgrades", "All-terrain tyres", "Bull bars", "Long-range fuel tanks", "Dual-battery systems"]
+  }
+]

@@ -1,128 +1,185 @@
-document.getElementById('year').textContent = new Date().getFullYear();
+/* ==========================================================================
+   Uvi — interactions
+   ========================================================================== */
+(function () {
+  'use strict';
 
-/* Header scroll state + progress bar */
-const header = document.getElementById('siteHeader');
-const progressBar = document.getElementById('progressBar');
-const backToTop = document.getElementById('backToTop');
+  /* ---- Current year ---- */
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-function onScroll(){
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-  progressBar.style.width = pct + '%';
+  /* ---- Mobile nav toggle ---- */
+  var toggle = document.querySelector('.nav-toggle');
+  var menu = document.getElementById('nav-menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    menu.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
 
-  header.classList.toggle('scrolled', scrollTop > 40);
-  backToTop.classList.toggle('visible', scrollTop > 600);
-}
-document.addEventListener('scroll', onScroll, { passive: true });
-onScroll();
+  /* ---- Reveal on scroll ---- */
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('in'); });
+  }
 
-backToTop.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+  /* ---- Trip tabs ---- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.trip-tab'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.trip-panel'));
+  function activateTab(tab) {
+    var targetId = tab.getAttribute('data-target');
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', String(on));
+    });
+    panels.forEach(function (p) {
+      var on = p.id === targetId;
+      p.classList.toggle('active', on);
+      if (on) { p.removeAttribute('hidden'); } else { p.setAttribute('hidden', ''); }
+    });
+  }
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { activateTab(tab); });
+    tab.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      var next = e.key === 'ArrowRight' ? (i + 1) % tabs.length : (i - 1 + tabs.length) % tabs.length;
+      tabs[next].focus();
+      activateTab(tabs[next]);
+    });
+  });
 
-/* Mobile nav toggle */
-const navToggle = document.getElementById('navToggle');
-const mainNav = document.getElementById('mainNav');
-const navBackdrop = document.getElementById('navBackdrop');
+  /* ---- Fuel cost calculator ---- */
+  var fuelForm = document.getElementById('fuel-form');
+  if (fuelForm) {
+    var distEl = document.getElementById('fuel-distance');
+    var econEl = document.getElementById('fuel-economy');
+    var priceEl = document.getElementById('fuel-price');
+    var returnEl = document.getElementById('fuel-return');
+    var costEl = document.getElementById('fuel-cost');
+    var detailEl = document.getElementById('fuel-detail');
 
-function openNav(){
-  mainNav.classList.add('open');
-  navBackdrop.classList.add('open');
-  navToggle.classList.add('open');
-  navToggle.setAttribute('aria-expanded', 'true');
-  const firstLink = mainNav.querySelector('a');
-  if (firstLink) firstLink.focus();
-}
+    var money = function (n) {
+      return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    };
 
-function closeNav({ returnFocus = false } = {}){
-  mainNav.classList.remove('open');
-  navBackdrop.classList.remove('open');
-  navToggle.classList.remove('open');
-  navToggle.setAttribute('aria-expanded', 'false');
-  if (returnFocus) navToggle.focus();
-}
-
-navToggle.addEventListener('click', () => {
-  if (mainNav.classList.contains('open')) closeNav();
-  else openNav();
-});
-
-navBackdrop.addEventListener('click', () => closeNav());
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && mainNav.classList.contains('open')) closeNav({ returnFocus: true });
-});
-
-mainNav.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => closeNav());
-});
-
-/* Reveal-on-scroll animation */
-const revealEls = document.querySelectorAll('.reveal');
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in-view');
-      revealObserver.unobserve(entry.target);
+    function calcFuel() {
+      var dist = parseFloat(distEl.value);
+      var econ = parseFloat(econEl.value);
+      var price = parseFloat(priceEl.value);
+      if (!(dist > 0) || !(econ > 0) || !(price > 0)) {
+        costEl.textContent = '$0.00';
+        detailEl.textContent = 'Enter your trip details above.';
+        return;
+      }
+      if (returnEl.checked) dist *= 2;
+      var litres = (dist * econ) / 100;
+      var cost = litres * price;
+      costEl.textContent = money(cost);
+      detailEl.textContent = Math.round(dist).toLocaleString('en-AU') + ' km · ' +
+        litres.toLocaleString('en-AU', { maximumFractionDigits: 1 }) + ' L of fuel';
     }
-  });
-}, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-
-revealEls.forEach(el => revealObserver.observe(el));
-
-/* Itinerary tabs */
-const itinTabs = document.querySelectorAll('.itin-tab');
-const itinPanels = document.querySelectorAll('.itin-panel');
-
-itinTabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    itinTabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
-    itinPanels.forEach(p => p.classList.remove('active'));
-
-    tab.classList.add('active');
-    tab.setAttribute('aria-selected', 'true');
-    document.getElementById(tab.dataset.target).classList.add('active');
-  });
-});
-
-/* Hero search — scrolls to destinations, no backend */
-const heroSearch = document.getElementById('heroSearch');
-heroSearch.addEventListener('submit', (e) => {
-  e.preventDefault();
-  document.getElementById('destinations').scrollIntoView({ behavior: 'smooth' });
-});
-
-/* Contact form — client-side validation + honest demo confirmation */
-const contactForm = document.getElementById('contactForm');
-const formNote = document.getElementById('formNote');
-const cfName = document.getElementById('cfName');
-const cfEmail = document.getElementById('cfEmail');
-
-const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-
-contactForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  formNote.classList.remove('success', 'error');
-
-  const name = cfName.value.trim();
-  const email = cfEmail.value.trim();
-
-  if (name.length < 2) {
-    formNote.textContent = 'Please enter your name.';
-    formNote.classList.add('error');
-    cfName.focus();
-    return;
-  }
-  if (!isValidEmail(email)) {
-    formNote.textContent = 'Please enter a valid email address.';
-    formNote.classList.add('error');
-    cfEmail.focus();
-    return;
+    fuelForm.addEventListener('input', calcFuel);
   }
 
-  // Demo only: nothing is sent or stored.
-  formNote.textContent = "Thanks! In a live version we'd email your custom itinerary. (Demo — nothing was sent.)";
-  formNote.classList.add('success');
-  contactForm.reset();
-});
+  /* ---- Packing checklist (persisted in localStorage) ---- */
+  var checklistEl = document.getElementById('checklist');
+  if (checklistEl) {
+    var STORE_KEY = 'uvi.checklist.v1';
+    var defaultItems = [
+      'Recovery boards & straps', 'Air compressor & gauge', 'First aid kit',
+      'Drinking water (min. 4 L/person/day)', 'UHF radio', 'Offline maps / GPS',
+      'Fuel — full + jerry cans', 'Fridge / esky & food', 'Tent or swag & bedding',
+      'Head torch & spare batteries', 'Fire kit (check bans first)', 'Rubbish bags — pack it out'
+    ];
+
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch (e) { saved = {}; }
+
+    var progressEl = document.getElementById('checklist-progress');
+    var resetBtn = document.getElementById('checklist-reset');
+
+    function persist() {
+      try { localStorage.setItem(STORE_KEY, JSON.stringify(saved)); } catch (e) { /* ignore */ }
+    }
+    function updateProgress() {
+      var boxes = checklistEl.querySelectorAll('input[type="checkbox"]');
+      var done = 0;
+      boxes.forEach(function (b) { if (b.checked) done++; });
+      if (progressEl) progressEl.textContent = done + ' of ' + boxes.length + ' packed';
+    }
+    function render() {
+      checklistEl.innerHTML = '';
+      defaultItems.forEach(function (label, i) {
+        var id = 'chk-' + i;
+        var lbl = document.createElement('label');
+        lbl.className = 'check-item';
+        lbl.setAttribute('for', id);
+
+        var input = document.createElement('input');
+        input.type = 'checkbox';
+        input.id = id;
+        input.checked = !!saved[label];
+        input.addEventListener('change', function () {
+          saved[label] = input.checked;
+          persist();
+          updateProgress();
+        });
+
+        var span = document.createElement('span');
+        span.textContent = label;
+
+        lbl.appendChild(input);
+        lbl.appendChild(span);
+        checklistEl.appendChild(lbl);
+      });
+      updateProgress();
+    }
+    if (resetBtn) {
+      resetBtn.addEventListener('click', function () {
+        saved = {};
+        persist();
+        render();
+      });
+    }
+    render();
+  }
+
+  /* ---- Community signup (front-end only; no backend yet) ---- */
+  var signupForm = document.getElementById('signup-form');
+  if (signupForm) {
+    var emailEl = document.getElementById('signup-email');
+    var msgEl = document.getElementById('signup-msg');
+    signupForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var value = (emailEl.value || '').trim();
+      var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      if (!valid) {
+        msgEl.style.color = '';
+        msgEl.textContent = 'Please enter a valid email address.';
+        emailEl.focus();
+        return;
+      }
+      msgEl.textContent = "You're on the list — we'll be in touch as Uvi launches.";
+      signupForm.reset();
+    });
+  }
+})();
