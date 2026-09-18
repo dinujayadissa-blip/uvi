@@ -24,6 +24,8 @@ const activities = read('data/activities.json');
 const finder = read('data/finder.json');
 const trips = read('data/trips.json');
 const gear = read('data/gear.json');
+const placeTypes = read('data/place-types.json');
+const places = read('data/places.json');
 
 /* ---- Activities grid ---- */
 const activitiesHtml = activities.map((a) => `        <article class="activity-card reveal ${a.cardClass}">
@@ -75,6 +77,30 @@ const gearHtml = gear.map((g) => `        <article class="gear-card reveal">
           <ul>${g.items.map((it) => `<li>${esc(it)}</li>`).join('')}</ul>
         </article>`).join('\n\n');
 
+/* ---- Map finder: filter chips, state options, place list ---- */
+const typeInPlaces = Object.keys(placeTypes).filter((k) => places.some((p) => p.type === k));
+
+const filterChipsHtml = ['        <button class="chip-filter active" data-filter="all" aria-pressed="true">All</button>']
+  .concat(typeInPlaces.map((k) => {
+    const t = placeTypes[k];
+    return `        <button class="chip-filter" data-filter="${esc(k)}" aria-pressed="false"><span class="chip-dot" style="background:${esc(t.color)}"></span>${t.icon} ${esc(t.label)}</button>`;
+  })).join('\n');
+
+const states = Array.from(new Set(places.map((p) => p.state))).sort();
+const stateOptionsHtml = states.map((s) => `                <option value="${esc(s)}">${esc(s)}</option>`).join('\n');
+
+const placeListHtml = places.map((p) => {
+  const t = placeTypes[p.type] || { label: p.type, icon: '📍', color: '#e0743a' };
+  return `        <button class="place-item" data-id="${esc(p.id)}" data-type="${esc(p.type)}" data-state="${esc(p.state)}">
+          <span class="place-dot" style="background:${esc(t.color)}" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">${esc(p.name)}</span>
+            <span class="place-meta">${t.icon} ${esc(t.label)} · ${esc(p.state)}</span>
+            <span class="place-desc">${esc(p.desc)}</span>
+          </span>
+        </button>`;
+}).join('\n\n');
+
 /* ---- Inject ---- */
 const between = (name, body) => {
   const re = new RegExp(`(<!-- BUILD:${name}:start -->)[\\s\\S]*?(<!-- BUILD:${name}:end -->)`);
@@ -90,6 +116,9 @@ html = between('activities', activitiesHtml)(html);
 html = between('finder', finderHtml)(html);
 html = between('trips', tripsHtml)(html);
 html = between('gear', gearHtml)(html);
+html = between('placefilters', filterChipsHtml)(html);
+html = between('placestates', stateOptionsHtml)(html);
+html = between('placelist', placeListHtml)(html);
 fs.writeFileSync(indexPath, html);
 
-console.log(`Built index.html: ${activities.length} activities, ${finder.length} finder cards, ${trips.length} trips, ${gear.length} gear categories.`);
+console.log(`Built index.html: ${activities.length} activities, ${finder.length} finder cards, ${trips.length} trips, ${gear.length} gear categories, ${places.length} map places (${typeInPlaces.length} types, ${states.length} states).`);

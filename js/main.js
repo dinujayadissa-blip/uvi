@@ -182,4 +182,140 @@
       signupForm.reset();
     });
   }
+
+  /* ---- Interactive map finder ---- */
+  var placeList = document.getElementById('place-list');
+  if (placeList) {
+    var listItems = Array.prototype.slice.call(placeList.querySelectorAll('.place-item'));
+    var chips = Array.prototype.slice.call(document.querySelectorAll('.chip-filter'));
+    var stateSel = document.getElementById('state-filter');
+    var countEl = document.getElementById('map-count');
+    var activeType = 'all';
+
+    var map = null, group = null, markers = {}, placesById = {};
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"]/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+      });
+    }
+
+    function matches(el) {
+      var okType = activeType === 'all' || el.getAttribute('data-type') === activeType;
+      var okState = !stateSel || stateSel.value === 'all' || el.getAttribute('data-state') === stateSel.value;
+      return okType && okState;
+    }
+
+    function applyFilter() {
+      var shown = 0;
+      listItems.forEach(function (el) {
+        var on = matches(el);
+        el.hidden = !on;
+        if (on) shown++;
+        if (map) {
+          var m = markers[el.getAttribute('data-id')];
+          if (m) {
+            if (on && !group.hasLayer(m)) group.addLayer(m);
+            else if (!on && group.hasLayer(m)) group.removeLayer(m);
+          }
+        }
+      });
+      if (countEl) countEl.textContent = shown + ' location' + (shown === 1 ? '' : 's') + ' shown';
+      if (map && group.getLayers().length) {
+        try { map.fitBounds(group.getBounds().pad(0.25)); } catch (e) { /* single point */ }
+      }
+    }
+
+    /* Filter wiring works with or without the map library */
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        activeType = chip.getAttribute('data-filter');
+        chips.forEach(function (c) {
+          var on = c === chip;
+          c.classList.toggle('active', on);
+          c.setAttribute('aria-pressed', String(on));
+        });
+        applyFilter();
+      });
+    });
+    if (stateSel) stateSel.addEventListener('change', applyFilter);
+
+    /* Build the Leaflet map if the library loaded */
+    var mapEl = document.getElementById('map');
+    if (mapEl && window.L) {
+      map = L.map('map', { scrollWheelZoom: false }).setView([-25.5, 134.0], 4);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+      map.on('focus', function () { map.scrollWheelZoom.enable(); });
+      map.on('blur', function () { map.scrollWheelZoom.disable(); });
+      group = L.featureGroup().addTo(map);
+
+      Promise.all([
+        fetch('/data/place-types.json').then(function (r) { return r.json(); }),
+        fetch('/data/places.json').then(function (r) { return r.json(); })
+      ]).then(function (res) {
+        var types = res[0], data = res[1];
+        data.forEach(function (p) {
+          placesById[p.id] = p;
+          var color = (types[p.type] || {}).color || '#e0743a';
+          var label = (types[p.type] || {}).label || p.type;
+          var m = L.circleMarker([p.lat, p.lng], {
+            radius: 8, color: '#0f1c1a', weight: 2, fillColor: color, fillOpacity: 0.95
+          });
+          m.bindPopup(
+            '<strong>' + escapeHtml(p.name) + '</strong><br>' +
+            '<span class="popup-meta">' + escapeHtml(label) + ' · ' + escapeHtml(p.state) + '</span><br>' +
+            escapeHtml(p.desc)
+          );
+          markers[p.id] = m;
+        });
+        applyFilter();
+        setTimeout(function () { map.invalidateSize(); }, 200);
+      }).catch(function () {
+        if (countEl) countEl.textContent = listItems.length + ' locations listed';
+      });
+
+      listItems.forEach(function (el) {
+        el.addEventListener('click', function () {
+          var id = el.getAttribute('data-id');
+          var m = markers[id], p = placesById[id];
+          if (m && p) {
+            map.setView([p.lat, p.lng], 8, { animate: true });
+            m.openPopup();
+            mapEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        });
+      });
+
+      var nearBtn = document.getElementById('near-me');
+      if (nearBtn && navigator.geolocation) {
+        nearBtn.addEventListener('click', function () {
+          nearBtn.disabled = true;
+          nearBtn.textContent = 'Locating…';
+          navigator.geolocation.getCurrentPosition(function (pos) {
+            var ll = [pos.coords.latitude, pos.coords.longitude];
+            map.setView(ll, 7);
+            L.circleMarker(ll, { radius: 9, color: '#fff', weight: 3, fillColor: '#f2c14e', fillOpacity: 1 })
+              .addTo(map).bindPopup('You are here').openPopup();
+            nearBtn.disabled = false;
+            nearBtn.textContent = '📍 Near me';
+          }, function () {
+            nearBtn.disabled = false;
+            nearBtn.textContent = '📍 Near me';
+            if (countEl) countEl.textContent = 'Location unavailable — check browser permissions.';
+          }, { enableHighAccuracy: false, timeout: 8000 });
+        });
+      } else if (nearBtn) {
+        nearBtn.hidden = true;
+      }
+    } else {
+      /* No map library (e.g. offline): keep list + filters usable, drop map + near-me */
+      if (mapEl) mapEl.hidden = true;
+      var nb = document.getElementById('near-me');
+      if (nb) nb.hidden = true;
+      applyFilter();
+    }
+  }
 })();

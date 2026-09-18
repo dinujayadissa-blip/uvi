@@ -7,6 +7,7 @@
   <meta name="description" content="Everything for the Australian outdoor lifestyle in one place — find free camps, caravan parks, 4WD tracks, dump points and fuel; plan trips with fuel and packing tools; and connect with the adventure community." />
   <meta name="theme-color" content="#0f1c1a" />
   <link rel="canonical" href="https://uvi-uvi1.vercel.app/" />
+  <script>document.documentElement.classList.add('js');</script>
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -14,20 +15,24 @@
   <meta property="og:title" content="Uvi — Australia's Outdoor Adventure Hub" />
   <meta property="og:description" content="Camping, 4WD, caravanning, fishing and road trips — discover, plan, explore and connect, all in one place." />
   <meta property="og:url" content="https://uvi-uvi1.vercel.app/" />
-  <meta property="og:image" content="https://uvi-uvi1.vercel.app/images/og-image.jpg" />
+  <meta property="og:image" content="https://uvi-uvi1.vercel.app/images/og-image.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Uvi — Australia's Outdoor Adventure Hub" />
   <meta name="twitter:description" content="Camping, 4WD, caravanning, fishing and road trips — all in one place." />
-  <meta name="twitter:image" content="https://uvi-uvi1.vercel.app/images/og-image.jpg" />
+  <meta name="twitter:image" content="https://uvi-uvi1.vercel.app/images/og-image.png" />
 
   <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%F0%9F%A7%AD%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml" href="/images/icon.svg" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Leaflet (interactive map) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <link rel="stylesheet" href="/css/style.css" />
 
   <script type="application/ld+json">
@@ -47,7 +52,7 @@
   <header class="site-header" id="top">
     <div class="wrap header-inner">
       <a class="brand" href="#top" aria-label="Uvi home">
-        <span class="brand-mark" aria-hidden="true">🧭</span>
+        <img class="brand-mark" src="/images/icon.svg" alt="" width="28" height="28" />
         <span class="brand-name">Uvi</span>
       </a>
       <nav class="nav" aria-label="Primary">
@@ -239,7 +244,277 @@
 
 <!-- BUILD:finder:end -->
         </div>
-        <p class="section-note reveal">Live maps and community reviews are rolling out — <a href="#community">join the list</a> to get early access.</p>
+
+        <!-- Interactive map finder -->
+        <div class="map-finder reveal" id="map-finder">
+          <div class="map-finder-head">
+            <h3>Explore the map</h3>
+            <p>Filter thousands of the spots that matter on the road. Tap a marker or a card for details.</p>
+          </div>
+          <div class="map-toolbar">
+            <div class="filter-chips" id="filter-chips" role="group" aria-label="Filter places by type">
+<!-- BUILD:placefilters:start -->
+
+        <button class="chip-filter active" data-filter="all" aria-pressed="true">All</button>
+        <button class="chip-filter" data-filter="freecamp" aria-pressed="false"><span class="chip-dot" style="background:#6fbf9a"></span>⛺ Free &amp; bush camps</button>
+        <button class="chip-filter" data-filter="park" aria-pressed="false"><span class="chip-dot" style="background:#8fd694"></span>🌳 National park sites</button>
+        <button class="chip-filter" data-filter="caravan" aria-pressed="false"><span class="chip-dot" style="background:#7cc4d6"></span>🚐 Caravan parks</button>
+        <button class="chip-filter" data-filter="track" aria-pressed="false"><span class="chip-dot" style="background:#e0743a"></span>🛤️ 4WD tracks</button>
+        <button class="chip-filter" data-filter="fishing" aria-pressed="false"><span class="chip-dot" style="background:#5aa9e6"></span>🐟 Fishing spots</button>
+        <button class="chip-filter" data-filter="dump" aria-pressed="false"><span class="chip-dot" style="background:#c98bdb"></span>🚽 Dump points</button>
+        <button class="chip-filter" data-filter="water" aria-pressed="false"><span class="chip-dot" style="background:#4fd1c5"></span>💧 Water refills</button>
+        <button class="chip-filter" data-filter="fuel" aria-pressed="false"><span class="chip-dot" style="background:#f2c14e"></span>⛽ Fuel stations</button>
+
+<!-- BUILD:placefilters:end -->
+            </div>
+            <div class="map-controls">
+              <label class="sr-only" for="state-filter">Filter by state or territory</label>
+              <select id="state-filter" class="state-select">
+                <option value="all">All states</option>
+<!-- BUILD:placestates:start -->
+
+                <option value="NSW">NSW</option>
+                <option value="NT">NT</option>
+                <option value="QLD">QLD</option>
+                <option value="SA">SA</option>
+                <option value="VIC">VIC</option>
+                <option value="WA">WA</option>
+
+<!-- BUILD:placestates:end -->
+              </select>
+              <button type="button" class="btn btn-ghost btn-sm" id="near-me">📍 Near me</button>
+            </div>
+          </div>
+          <div class="map-layout">
+            <div id="map" class="map" aria-label="Interactive map of adventure locations"></div>
+            <div class="place-list" id="place-list" aria-label="Locations list">
+<!-- BUILD:placelist:start -->
+
+        <button class="place-item" data-id="p01" data-type="freecamp" data-state="WA">
+          <span class="place-dot" style="background:#6fbf9a" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Lucky Bay, Cape Le Grand</span>
+            <span class="place-meta">⛺ Free &amp; bush camps · WA</span>
+            <span class="place-desc">Squeaky white sand and kangaroos on the beach — a beachside campground near Esperance.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p02" data-type="park" data-state="SA">
+          <span class="place-dot" style="background:#8fd694" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Wilpena Pound, Flinders Ranges</span>
+            <span class="place-meta">🌳 National park sites · SA</span>
+            <span class="place-desc">Ancient natural amphitheatre with walking trails and a well-equipped park campground.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p03" data-type="park" data-state="VIC">
+          <span class="place-dot" style="background:#8fd694" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Tidal River, Wilsons Promontory</span>
+            <span class="place-meta">🌳 National park sites · VIC</span>
+            <span class="place-desc">Southernmost mainland camping — beaches, granite peaks and abundant wildlife.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p04" data-type="park" data-state="WA">
+          <span class="place-dot" style="background:#8fd694" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Karijini National Park</span>
+            <span class="place-meta">🌳 National park sites · WA</span>
+            <span class="place-desc">Deep red gorges, waterfalls and swimming holes in the Pilbara.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p05" data-type="track" data-state="QLD">
+          <span class="place-dot" style="background:#e0743a" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">The Tip, Cape York</span>
+            <span class="place-meta">🛤️ 4WD tracks · QLD</span>
+            <span class="place-desc">Remote 4WD pilgrimage to the northernmost point of the Australian mainland.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p06" data-type="track" data-state="QLD">
+          <span class="place-dot" style="background:#e0743a" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">75 Mile Beach, K'gari</span>
+            <span class="place-meta">🛤️ 4WD tracks · QLD</span>
+            <span class="place-desc">Iconic beach 4WD highway on the world's largest sand island. Air down and check tides.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p07" data-type="track" data-state="QLD">
+          <span class="place-dot" style="background:#e0743a" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Big Red, Simpson Desert</span>
+            <span class="place-meta">🛤️ 4WD tracks · QLD</span>
+            <span class="place-desc">The desert's tallest dune, just west of Birdsville — the gateway to the Simpson crossing.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p08" data-type="track" data-state="VIC">
+          <span class="place-dot" style="background:#e0743a" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Blue Rag Range Track</span>
+            <span class="place-meta">🛤️ 4WD tracks · VIC</span>
+            <span class="place-desc">Legendary High Country ridge run with 360° alpine views. Dry-weather only.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p09" data-type="fishing" data-state="SA">
+          <span class="place-dot" style="background:#5aa9e6" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Coffin Bay</span>
+            <span class="place-meta">🐟 Fishing spots · SA</span>
+            <span class="place-desc">Oysters, whiting and snapper on the Eyre Peninsula, with camps in the national park.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p10" data-type="fishing" data-state="WA">
+          <span class="place-dot" style="background:#5aa9e6" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Ningaloo, Cape Range</span>
+            <span class="place-meta">🐟 Fishing spots · WA</span>
+            <span class="place-desc">Reef right off the beach — snorkel with whale sharks and cast for pelagics.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p11" data-type="fishing" data-state="NSW">
+          <span class="place-dot" style="background:#5aa9e6" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Jervis Bay</span>
+            <span class="place-meta">🐟 Fishing spots · NSW</span>
+            <span class="place-desc">White-sand bays, beach and boat fishing, and dolphin-filled waters.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p12" data-type="caravan" data-state="WA">
+          <span class="place-dot" style="background:#7cc4d6" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Broome Caravan Park</span>
+            <span class="place-meta">🚐 Caravan parks · WA</span>
+            <span class="place-desc">Base yourself near Cable Beach for Kimberley sunsets and camel trains.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p13" data-type="caravan" data-state="NSW">
+          <span class="place-dot" style="background:#7cc4d6" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Byron Bay Holiday Park</span>
+            <span class="place-meta">🚐 Caravan parks · NSW</span>
+            <span class="place-desc">Powered sites minutes from the lighthouse walk and town beaches.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p14" data-type="caravan" data-state="NT">
+          <span class="place-dot" style="background:#7cc4d6" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Alice Springs Tourist Park</span>
+            <span class="place-meta">🚐 Caravan parks · NT</span>
+            <span class="place-desc">Central Red Centre base with amenities, dump point and easy resupply.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p15" data-type="fuel" data-state="SA">
+          <span class="place-dot" style="background:#f2c14e" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Coober Pedy</span>
+            <span class="place-meta">⛽ Fuel stations · SA</span>
+            <span class="place-desc">Opal town and a vital Stuart Highway fuel and supply stop.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p16" data-type="fuel" data-state="QLD">
+          <span class="place-dot" style="background:#f2c14e" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Birdsville Roadhouse</span>
+            <span class="place-meta">⛽ Fuel stations · QLD</span>
+            <span class="place-desc">Last reliable fuel before the Simpson Desert crossing — fill everything.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p17" data-type="fuel" data-state="SA">
+          <span class="place-dot" style="background:#f2c14e" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Mount Dare Fuel</span>
+            <span class="place-meta">⛽ Fuel stations · SA</span>
+            <span class="place-desc">Remote fuel and cold drinks on the western edge of the Simpson.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p18" data-type="dump" data-state="NT">
+          <span class="place-dot" style="background:#c98bdb" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Katherine Dump Point</span>
+            <span class="place-meta">🚽 Dump points · NT</span>
+            <span class="place-desc">Public RV dump point on the Stuart Highway between Darwin and the Centre.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p19" data-type="dump" data-state="SA">
+          <span class="place-dot" style="background:#c98bdb" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Ceduna Dump Point</span>
+            <span class="place-meta">🚽 Dump points · SA</span>
+            <span class="place-desc">Handy waste stop before or after the Nullarbor crossing.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p20" data-type="water" data-state="SA">
+          <span class="place-dot" style="background:#4fd1c5" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Mount Gambier Water Fill</span>
+            <span class="place-meta">💧 Water refills · SA</span>
+            <span class="place-desc">Potable water top-up near the Blue Lake on the Limestone Coast.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p21" data-type="water" data-state="SA">
+          <span class="place-dot" style="background:#4fd1c5" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Hahndorf Water Point</span>
+            <span class="place-meta">💧 Water refills · SA</span>
+            <span class="place-desc">Refill tanks in the Adelaide Hills before heading bush.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p22" data-type="freecamp" data-state="VIC">
+          <span class="place-dot" style="background:#6fbf9a" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Johanna Beach, Great Ocean Road</span>
+            <span class="place-meta">⛺ Free &amp; bush camps · VIC</span>
+            <span class="place-desc">Wild, low-cost beachfront camping off the Great Ocean Road.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p23" data-type="park" data-state="NSW">
+          <span class="place-dot" style="background:#8fd694" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Mungo National Park</span>
+            <span class="place-meta">🌳 National park sites · NSW</span>
+            <span class="place-desc">Remote outback park with ancient dunes and dark, star-filled skies.</span>
+          </span>
+        </button>
+
+        <button class="place-item" data-id="p24" data-type="park" data-state="NT">
+          <span class="place-dot" style="background:#8fd694" aria-hidden="true"></span>
+          <span class="place-text">
+            <span class="place-name">Litchfield National Park</span>
+            <span class="place-meta">🌳 National park sites · NT</span>
+            <span class="place-desc">Waterfalls and safe swimming holes within easy reach of Darwin.</span>
+          </span>
+        </button>
+
+<!-- BUILD:placelist:end -->
+            </div>
+          </div>
+          <p class="map-count" id="map-count" aria-live="polite"></p>
+          <p class="map-attribution">
+            Preview locations shown for demonstration. Community-verified listings, reviews and live
+            conditions are on the way — <a href="#community">join the list</a> for early access.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -472,7 +747,7 @@
   <footer class="site-footer">
     <div class="wrap footer-inner">
       <div class="footer-brand">
-        <span class="brand-mark" aria-hidden="true">🧭</span>
+        <img class="brand-mark" src="/images/icon.svg" alt="" width="28" height="28" />
         <span class="brand-name">Uvi</span>
         <p>Australia's outdoor adventure hub.</p>
       </div>
@@ -491,6 +766,7 @@
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-BwHfrr4c9kmRkLw6iXFdzcdWV/PGkVgiIyIWLLlTSXzWQzxuSg4DiQUCpauz/EWjgk5TYQqX/kvn9pG1NpYfg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
   <script src="/js/main.js" defer></script>
 </body>
 </html>

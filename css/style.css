@@ -387,12 +387,91 @@ a:hover { text-decoration: underline; }
 .footer-legal p { color: var(--ink-mute); font-size: 0.85rem; margin: 0; }
 
 /* ==========================================================================
+   Interactive map finder
+   ========================================================================== */
+.map-finder {
+  margin-top: 2.5rem;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+.map-finder-head { margin-bottom: 1.25rem; }
+.map-finder-head h3 { font-size: 1.35rem; margin-bottom: 0.3rem; }
+.map-finder-head p { color: var(--ink-soft); margin: 0; font-size: 0.98rem; }
+
+.map-toolbar {
+  display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;
+  justify-content: space-between; margin-bottom: 1.25rem;
+}
+.filter-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chip-filter {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.45rem 0.85rem; border-radius: 999px; cursor: pointer;
+  background: rgba(255,255,255,0.05); color: var(--ink-soft);
+  border: 1px solid var(--line); font: inherit; font-size: 0.85rem; transition: 0.15s;
+}
+.chip-filter:hover { color: var(--ink); border-color: var(--ink-mute); }
+.chip-filter.active { background: var(--ochre); color: #1a0f07; border-color: var(--ochre); font-weight: 600; }
+.chip-dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+
+.map-controls { display: flex; align-items: center; gap: 0.6rem; }
+.state-select {
+  padding: 0.55rem 0.8rem; border-radius: 999px; font: inherit; font-size: 0.9rem;
+  background: rgba(0,0,0,0.25); color: var(--ink); border: 1px solid var(--line); cursor: pointer;
+}
+.state-select:focus { border-color: var(--ochre); outline: none; }
+.btn-sm { padding: 0.55rem 1rem; font-size: 0.88rem; }
+
+.map-layout {
+  display: grid; gap: 1rem; grid-template-columns: 1fr 340px; align-items: stretch;
+}
+.map {
+  height: 480px; border-radius: var(--radius-sm); overflow: hidden;
+  border: 1px solid var(--line); background: var(--night-2); z-index: 0;
+}
+.place-list {
+  height: 480px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.5rem;
+  padding-right: 0.25rem;
+}
+.place-item {
+  display: flex; gap: 0.7rem; text-align: left; width: 100%;
+  padding: 0.75rem 0.85rem; border-radius: var(--radius-sm); cursor: pointer;
+  background: var(--panel-2); border: 1px solid var(--line); color: var(--ink);
+  font: inherit; transition: 0.15s;
+}
+.place-item:hover { border-color: var(--ochre); transform: translateX(2px); }
+.place-dot { width: 12px; height: 12px; border-radius: 50%; flex: none; margin-top: 0.3rem; border: 2px solid rgba(0,0,0,0.4); }
+.place-text { display: grid; gap: 0.15rem; }
+.place-name { font-family: var(--font-display); font-weight: 600; font-size: 0.98rem; }
+.place-meta { color: var(--gum); font-size: 0.8rem; }
+.place-desc { color: var(--ink-mute); font-size: 0.85rem; line-height: 1.45; }
+
+.map-count { color: var(--ink-soft); font-size: 0.9rem; margin: 1rem 0 0; font-weight: 600; }
+.map-attribution { color: var(--ink-mute); font-size: 0.85rem; margin: 0.4rem 0 0; }
+
+/* Leaflet popup theming */
+.leaflet-popup-content { font-family: var(--font-body); font-size: 0.9rem; line-height: 1.5; }
+.leaflet-popup-content .popup-meta { color: #2f6b57; font-weight: 600; font-size: 0.82rem; }
+.leaflet-container { font-family: var(--font-body); }
+
+@media (max-width: 760px) {
+  .map-layout { grid-template-columns: 1fr; }
+  .map { height: 320px; }
+  .place-list { height: auto; max-height: 420px; }
+  .map-toolbar { flex-direction: column; align-items: stretch; }
+  .map-controls { justify-content: space-between; }
+}
+
+/* ==========================================================================
    Reveal animation
    ========================================================================== */
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.reveal.in { opacity: 1; transform: none; }
+/* Content is visible by default; only hidden (for animation) when JS is on. */
+.reveal { transition: opacity 0.6s ease, transform 0.6s ease; }
+.js .reveal { opacity: 0; transform: translateY(18px); }
+.js .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
   .trip-panel.active { animation: none; }
   .btn:hover, .activity-card:hover, .finder-card:hover { transform: none; }
 }
