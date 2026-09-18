@@ -840,10 +840,41 @@
     </div>
   </div>
 
+  <!-- Place detail + reviews modal -->
+  <div class="modal-overlay" id="place-modal" hidden>
+    <div class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="place-modal-title">
+      <button class="modal-close" id="place-close" aria-label="Close">&times;</button>
+      <span class="place-badge" id="place-modal-type"></span>
+      <h2 id="place-modal-title"></h2>
+      <p class="place-modal-meta" id="place-modal-meta"></p>
+      <p class="place-modal-desc" id="place-modal-desc"></p>
+      <div class="place-modal-actions">
+        <button type="button" class="btn btn-ghost btn-sm" id="place-view-map">View on map</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="place-bookmark" data-on="0" hidden>&#9734; Save</button>
+      </div>
+      <div class="reviews-block">
+        <h3>Reviews <span id="reviews-summary"></span></h3>
+        <div id="reviews-list"></div>
+        <form id="review-form" hidden>
+          <div class="review-rating">
+            <span class="review-rating-label">Your rating</span>
+            <div class="stars" id="review-stars" role="group" aria-label="Rating"></div>
+          </div>
+          <label class="sr-only" for="review-body">Your review</label>
+          <textarea id="review-body" rows="3" maxlength="2000" placeholder="How was it? Access, facilities, tips…"></textarea>
+          <button type="submit" class="btn btn-primary btn-sm">Post review</button>
+        </form>
+        <p id="review-signin-note" class="reviews-empty" hidden>Sign in to leave a review.</p>
+        <p class="auth-msg" id="review-msg"></p>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-BwHfrr4c9kmRkLw6iXFdzcdWV/PGkVgiIyIWLLlTSXzWQzxuSg4DiQUCpauz/EWjgk5TYQqX/kvn9pG1NpYfg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js" defer></script>
   <script src="/js/config.js" defer></script>
   <script src="/js/auth.js" defer></script>
+  <script src="/js/places.js" defer></script>
   <script src="/js/main.js" defer></script>
 </body>
 </html>

@@ -473,6 +473,49 @@ a:hover { text-decoration: underline; }
 #auth-forgot { margin-top: 0.9rem; font-size: 0.88rem; }
 .auth-msg { min-height: 1.3rem; margin: 0.9rem 0 0; font-size: 0.9rem; font-weight: 600; }
 
+/* ---- Place detail + reviews modal ---- */
+.modal-wide { width: min(100%, 560px); }
+.place-badge {
+  display: inline-block; font-size: 0.8rem; padding: 0.25rem 0.7rem; border-radius: 999px;
+  background: rgba(255,255,255,0.06); border: 1px solid var(--line); color: var(--ink-soft);
+  margin-bottom: 0.6rem;
+}
+.place-modal-meta { color: var(--gum); font-weight: 600; font-size: 0.92rem; margin: 0 0 0.75rem; }
+.place-modal-desc { color: var(--ink-soft); margin: 0 0 1rem; }
+.place-modal-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.25rem; }
+
+.reviews-block { border-top: 1px solid var(--line); padding-top: 1.1rem; }
+.reviews-block h3 { font-size: 1.1rem; margin-bottom: 0.75rem; }
+#reviews-summary { color: var(--ink-mute); font-weight: 400; font-size: 0.9rem; }
+.reviews-empty { color: var(--ink-mute); font-size: 0.9rem; margin: 0.3rem 0; }
+.review { padding: 0.7rem 0; border-bottom: 1px solid var(--line); }
+.review:last-child { border-bottom: none; }
+.review-head { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.2rem; }
+.review-stars { color: var(--sun); letter-spacing: 1px; font-size: 0.95rem; }
+.review-who { color: var(--ink-soft); font-size: 0.88rem; font-weight: 600; }
+.review p { margin: 0.2rem 0 0; color: var(--ink-soft); font-size: 0.93rem; }
+
+#review-form { display: grid; gap: 0.75rem; margin-top: 1rem; }
+.review-rating { display: flex; align-items: center; gap: 0.75rem; }
+.review-rating-label { font-size: 0.88rem; color: var(--ink-soft); font-weight: 500; }
+.stars { display: inline-flex; gap: 0.15rem; }
+.star {
+  background: none; border: none; cursor: pointer; font-size: 1.5rem; line-height: 1;
+  color: var(--ink-mute); padding: 0;
+}
+.star.on, .star:hover { color: var(--sun); }
+#review-body {
+  width: 100%; padding: 0.7rem 0.85rem; border-radius: var(--radius-sm);
+  border: 1px solid var(--line); background: rgba(0,0,0,0.25); color: var(--ink);
+  font: inherit; font-size: 0.98rem; resize: vertical;
+}
+#review-body:focus { border-color: var(--ochre); outline: none; }
+
+.place-rating {
+  font-size: 0.8rem; color: var(--sun); font-weight: 600; margin-left: 0.4rem;
+  white-space: nowrap;
+}
+
 /* ==========================================================================
    Interactive map finder
    ========================================================================== */

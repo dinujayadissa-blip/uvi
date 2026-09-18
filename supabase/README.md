@@ -57,6 +57,27 @@ update public.profiles set role = 'admin' where username = 'your_username';
 - Username onboarding + profile edit (`profiles` table).
 - The "notify me" form now persists to `email_subscribers` (staff-readable only).
 
+## Phase B — places, reviews & bookmarks
+
+`supabase db push` applies these automatically (they're plain migrations):
+
+- `0002_phase_b_places.sql` — enables PostGIS; creates `places` (with a
+  geography column + rating rollup), `reviews`, and `bookmarks`; adds the
+  `nearby_places()` geo-search RPC; and RLS + grants for all three.
+- `0003_seed_places.sql` — loads the 24 curated finder locations as
+  **approved** places. Regenerate it after editing `data/places.json`:
+
+  ```bash
+  node tools/gen-seed.js && supabase db push
+  ```
+
+Once applied and keys are set, the map and list load **live** from Supabase
+(including any user-submitted places you approve), each place gets a detail
+view with **star ratings and reviews**, and signed-in users can **bookmark**
+places. User-submitted places default to `pending` until a staff member sets
+`status = 'approved'` (curated-first). Until Supabase is configured the site
+uses the static `data/places.json` and shows reviews as "coming soon".
+
 ## Next phases
-See `docs/backend-spec.md` for Phase B onward (places + geo search, reviews,
-media/photos, trips, social, groups, moderation).
+See `docs/backend-spec.md` for Phase C onward (media/photos, trips, social,
+groups, moderation).
