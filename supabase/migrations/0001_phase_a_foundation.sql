@@ -8,22 +8,6 @@
 create extension if not exists citext;
 
 -- ----------------------------------------------------------------------------
--- Staff helper (security definer so it can read profiles without RLS recursion)
--- ----------------------------------------------------------------------------
-create or replace function public.is_staff()
-returns boolean
-language sql
-stable
-security definer
-set search_path = public
-as $$
-  select exists (
-    select 1 from public.profiles
-    where id = auth.uid() and role in ('moderator', 'admin')
-  );
-$$;
-
--- ----------------------------------------------------------------------------
 -- profiles  (1:1 with auth.users; created during onboarding)
 -- ----------------------------------------------------------------------------
 create table if not exists public.profiles (
@@ -53,6 +37,23 @@ drop trigger if exists profiles_set_updated_at on public.profiles;
 create trigger profiles_set_updated_at
   before update on public.profiles
   for each row execute function public.set_updated_at();
+
+-- ----------------------------------------------------------------------------
+-- Staff helper (security definer so it can read profiles without RLS recursion).
+-- Defined after profiles so its SQL body validates.
+-- ----------------------------------------------------------------------------
+create or replace function public.is_staff()
+returns boolean
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  select exists (
+    select 1 from public.profiles
+    where id = auth.uid() and role in ('moderator', 'admin')
+  );
+$$;
 
 alter table public.profiles enable row level security;
 

@@ -122,8 +122,10 @@ create table if not exists public.bookmarks (
 -- ----------------------------------------------------------------------------
 -- Geo search RPC (powers the map + "near me")
 -- ----------------------------------------------------------------------------
+-- Parameters are prefixed (in_lat/in_lng) so they don't collide with the
+-- places.lat / places.lng columns referenced in the body.
 create or replace function public.nearby_places(
-  lat double precision, lng double precision,
+  in_lat double precision, in_lng double precision,
   radius_km double precision default 300,
   p_types text[] default null, p_state text default null
 ) returns table (
@@ -134,16 +136,16 @@ create or replace function public.nearby_places(
   select p.id, p.name, p.type, p.state, p.lat, p.lng, p.description,
          p.rating_avg, p.rating_count,
          round((ST_Distance(p.location,
-                ST_SetSRID(ST_MakePoint(lng, lat), 4326)::geography) / 1000)::numeric, 1)
+                ST_SetSRID(ST_MakePoint(in_lng, in_lat), 4326)::geography) / 1000)::numeric, 1)
            ::double precision as distance_km
   from public.places p
   where p.status = 'approved'
     and (p_types is null or p.type = any(p_types))
     and (p_state is null or p.state = p_state)
     and ST_DWithin(p.location,
-                   ST_SetSRID(ST_MakePoint(lng, lat), 4326)::geography,
+                   ST_SetSRID(ST_MakePoint(in_lng, in_lat), 4326)::geography,
                    radius_km * 1000)
-  order by p.location <-> ST_SetSRID(ST_MakePoint(lng, lat), 4326)::geography
+  order by p.location <-> ST_SetSRID(ST_MakePoint(in_lng, in_lat), 4326)::geography
   limit 500;
 $$;
 
