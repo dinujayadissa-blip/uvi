@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Ceylon First Exports: Website Mockup</title>
+<meta name="description" content="Design mockup: Sri Lankan frozen and dry foods from Thambuththegama, Anuradhapura. ISO 22000 and HACCP certified.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600;700&family=Noto+Sans+Sinhala:wght@500;700&family=Noto+Sans+Tamil:wght@500;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="mock">Design mockup prepared for Ceylon First Exports. Not a live website. Figures marked * are placeholders.</div>
+
+<header class="nav">
+  <a href="#top" class="logo"><i></i><span>Ceylon First<small>Thambuththegama · Anuradhapura</small></span></a>
+  <nav id="menu">
+    <a href="#range">Products</a><a href="#facility">Our facility</a><a href="#quality">Certificates</a><a href="#recipes">Recipes</a><a href="#where">Where to buy</a>
+  </nav>
+  <div class="navr"><span class="lang"><b>EN</b> · <span class="si">සිං</span> · <span class="ta">தமி</span></span><a class="btn" href="#enquire">Wholesale enquiry →</a><button class="burger" aria-label="Menu" onclick="document.body.classList.toggle('open')">☰</button></div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="hero-txt">
+    <span class="eyebrow">Frozen &amp; dry Sri Lankan foods · Export</span>
+    <h1>Sri Lankan flavour, <em>rooted in Anuradhapura.</em></h1>
+    <p>Frozen fruit and vegetables, frozen scraped coconut, dehydrated goods, spices and rice. Prepared and packed at our own certified facility in Thambuththegama, then shipped frozen to importers in Australia.</p>
+    <div class="cta"><a class="btn y" href="#enquire">Request wholesale information</a><a class="btn o" href="#range">Browse the range</a></div>
+    <ul class="trust"><li>ISO 22000:2018</li><li>HACCP · SLS 1266:2023</li><li>Reefer cold storage</li></ul>
+  </div>
+  <div class="hero-img">
+    <img class="a" src="img/gate.webp" alt="Ceylon First Export (Pvt) Ltd facility entrance, Thambuththegama">
+    <img class="b" src="img/mango-pack.webp" alt="Frozen green mango 1 kg pack">
+    <img class="c" src="img/chilli1.webp" alt="Staff preparing green chillies in hairnets, masks and gloves">
+  </div>
+</section>
+
+<section class="paths">
+  <a class="path b2b" href="#enquire"><span class="eyebrow">For importers &amp; distributors</span><h3>Buy wholesale</h3><p>Spec sheets, carton quantities, certificates and a named sales contact who replies within one business day.</p><span class="btn y">Start an enquiry</span></a>
+  <a class="path b2c" href="#where"><span class="eyebrow">For families in Australia</span><h3>Find Island Fresh near you</h3><p>Our frozen range is stocked by our Melbourne distributor and Sri Lankan grocers. <span class="si">ඔබට ළඟම සාප්පුව සොයන්න.</span></p><span class="btn">Where to buy</span></a>
+</section>
+
+<section id="range">
+  <span class="eyebrow">The range</span>
+  <h2>What can I order?</h2>
+  <div class="tabs"><span class="on">❄ Frozen</span><span>Dehydrated &amp; in-brine</span><span>Spices &amp; rice</span><span>Pantry</span></div>
+  <div class="grid4">
+    <article class="prod"><img src="img/mango-pack.webp" alt=""><div><span class="tag f">❄ Frozen</span><h4>Green Mango</h4><p class="loc"><span class="si">අමු අඹ</span> · <span class="ta">மாங்காய்</span></p><p>Sliced, 1 kg vacuum pack</p><button onclick="addItem('Frozen Green Mango 1kg')">+ Add to enquiry</button></div></article>
+    <article class="prod"><img src="img/cassava-pack.webp" alt=""><div><span class="tag f">❄ Frozen</span><h4>White Cassava</h4><p class="loc"><span class="si">මඤ්ඤොක්කා</span> · <span class="ta">மரவள்ளிக் கிழங்கு</span></p><p>Round pieces, 1 kg</p><button onclick="addItem('Frozen White Cassava 1kg')">+ Add to enquiry</button></div></article>
+    <article class="prod"><img src="img/kirikos.webp" alt=""><div><span class="tag f">❄ Frozen</span><h4>Young Jackfruit</h4><p class="loc"><span class="si">කොස්</span> · <span class="ta">பலாக்காய்</span></p><p>Cleaned &amp; cut, 1 kg*</p><button onclick="addItem('Frozen Jackfruit 1kg')">+ Add to enquiry</button></div></article>
+    <article class="prod"><div class="ph coco">🥥</div><div><span class="tag f">❄ Frozen</span><h4>Scraped Coconut</h4><p class="loc"><span class="si">ගාපු පොල්</span> · <span class="ta">தேங்காய்ப் பூ</span></p><p>Fresh-frozen, 500 g*</p><button onclick="addItem('Frozen Scraped Coconut')">+ Add to enquiry</button></div></article>
+    <article class="prod"><img src="img/chilli2.webp" alt=""><div><span class="tag f">❄ Frozen</span><h4>Green Chilli</h4><p class="loc"><span class="si">අමු මිරිස්</span> · <span class="ta">பச்சை மிளகாய்</span></p><p>Hand-sorted, destemmed*</p><button onclick="addItem('Frozen Green Chilli')">+ Add to enquiry</button></div></article>
+    <article class="prod"><div class="ph pandan">🌿</div><div><span class="tag f">❄ Frozen</span><h4>Pandan Leaves</h4><p class="loc"><span class="si">රම්පෙ</span> · <span class="ta">ரம்பை</span></p><p>Natural aroma</p><button onclick="addItem('Frozen Pandan Leaves')">+ Add to enquiry</button></div></article>
+    <article class="prod"><div class="ph spice">🌶</div><div><span class="tag">Dry</span><h4>Spices</h4><p class="loc">Fumigated &amp; repacked</p><p>Cinnamon, pepper, chilli, curry blends*</p><button onclick="addItem('Spices (range)')">+ Add to enquiry</button></div></article>
+    <article class="prod"><div class="ph rice">🍚</div><div><span class="tag">Dry</span><h4>Rice &amp; pantry</h4><p class="loc">Rice, sago, mung flour, soya, cashew</p><p>Repacked to order</p><button onclick="addItem('Rice & pantry')">+ Add to enquiry</button></div></article>
+  </div>
+  <p class="small">Also: dehydrated and in-brine fruit &amp; vegetables, fried vegetables and herbs. Every product line above sits within our certified scope.</p>
+
+  <div class="detail">
+    <img src="img/mango-pack.webp" alt="Frozen green mango pack">
+    <div>
+      <span class="eyebrow">Product page example</span>
+      <h3>Frozen Green Mango <span class="si">අමු අඹ</span> <span class="ta">மாங்காய்</span></h3>
+      <p>Unripe Sri Lankan mango, washed, sliced and vacuum packed at Thambuththegama. Ready for curry, pickle and achcharu, with no peeling and no waste, all year round.</p>
+      <table>
+        <tr><td>Pack size</td><td><b>1 kg vacuum pack</b></td></tr>
+        <tr><td>Units per carton</td><td>10 × 1 kg*</td></tr>
+        <tr><td>Storage</td><td>−18 °C or below</td></tr>
+        <tr><td>Shelf life</td><td>18 months frozen*</td></tr>
+        <tr><td>Minimum order</td><td>1 pallet, mixed pallets OK*</td></tr>
+        <tr><td>Certification</td><td>ISO 22000:2018, CCFS 099 (CII)</td></tr>
+      </table>
+      <div class="cta"><button class="btn y" onclick="addItem('Frozen Green Mango 1kg')">+ Add to enquiry</button><a class="btn o" href="#quality">View certificate</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="facility" class="dark">
+  <span class="eyebrow">Our facility · Thambuththegama</span>
+  <h2>Real footage, not stock photos</h2>
+  <p class="lead">Our processing hall, freezer room and reefer storage, photographed on site. Buyers can see how their product is handled before they place an order.</p>
+  <div class="fgrid">
+    <figure class="f1"><img src="img/process.webp" alt="Stainless-steel processing hall"><figcaption>Processing hall: stainless-steel prep tables, temperature-controlled</figcaption></figure>
+    <figure class="f2"><img src="img/chilli1.webp" alt="Staff sorting green chillies"><figcaption>Hand-sorting green chillies: hairnets, masks and gloves throughout</figcaption></figure>
+    <figure class="f3"><img src="img/coldroom.webp" alt="Freezer room with evaporator fans"><figcaption>Freezer room with triple evaporator fans</figcaption></figure>
+    <figure class="f4"><img src="img/reefer.webp" alt="40ft reefer container being installed"><figcaption>New 40ft reefer container adds cold-storage capacity</figcaption></figure>
+  </div>
+  <div class="chain">
+    <div><b>1 · Receive</b>Produce from growers around Anuradhapura</div>
+    <div><b>2 · Prepare</b>Wash, sort, cut under HACCP controls</div>
+    <div><b>3 · Pack</b>Vacuum packed, batch-coded</div>
+    <div><b>4 · Freeze &amp; store</b>Freezer room + reefer · −18 °C</div>
+    <div><b>5 · Ship</b>Reefer container to Melbourne</div>
+  </div>
+</section>
+
+<section id="quality">
+  <span class="eyebrow">Certificates</span>
+  <h2>Check our certificates yourself</h2>
+  <p class="lead">All three were issued by Ceycert (Pvt) Ltd and are valid until 18 December 2028, subject to surveillance audits. You can verify them at <b>ceycert.com</b> or <b>iafcertsearch.org</b>.</p>
+  <div class="certs">
+    <div class="cert"><img src="img/cert-iso-cii.webp" alt="ISO 22000 certificate CCFS 099 CII"><div><span class="badge">ISO 22000:2018</span><h4>Frozen products</h4><dl><dt>Cert no.</dt><dd>CCFS 099 · Category CII</dd><dt>Scope</dt><dd>Processing of frozen fruits &amp; vegetables and packaging; frozen scraped coconut</dd><dt>Valid</dt><dd class="ok">✓ 19 Dec 2025 – 18 Dec 2028</dd></dl></div></div>
+    <div class="cert"><img src="img/cert-iso-civ.webp" alt="ISO 22000 certificate CCFS 099 CIV"><div><span class="badge">ISO 22000:2018</span><h4>Dry &amp; processed goods</h4><dl><dt>Cert no.</dt><dd>CCFS 099 · Category CIV</dd><dt>Scope</dt><dd>Dehydrated &amp; in-brine fruit/veg; fumigation &amp; repacking of spices, rice; herbs, soya, sago, mung flour, cashew; fried vegetables</dd><dt>Valid</dt><dd class="ok">✓ 19 Dec 2025 – 18 Dec 2028</dd></dl></div></div>
+    <div class="cert"><img src="img/cert-haccp.webp" alt="HACCP certificate CCHCP 099"><div><span class="badge">HACCP · SLS 1266:2023</span><h4>Hazard analysis &amp; critical control points</h4><dl><dt>Cert no.</dt><dd>CCHCP 099 · Category CIV</dd><dt>Scope</dt><dd>Same scope as the CIV certificate (dry &amp; processed goods)</dd><dt>Valid</dt><dd class="ok">✓ 19 Dec 2025 – 18 Dec 2028</dd></dl></div></div>
+  </div>
+  <p class="small">Before launch, confirm Ceycert is happy for the certificate images to be shown (their web certificates carry a copyright notice). Buyers can request the originals.</p>
+</section>
+
+<section id="recipes" class="cream">
+  <span class="eyebrow">Recipes · filmed in the traditional house</span>
+  <h2>Ways to use the range</h2>
+  <div class="grid3">
+    <article class="rec"><div class="vid"><img src="img/kirikos.webp" alt=""><span>▶</span></div><h4>Kiri kos: jackfruit in coconut milk</h4><p>30 min · vegan · uses frozen jackfruit, scraped coconut &amp; pandan</p></article>
+    <article class="rec"><div class="vid"><img src="img/mango-fruit.webp" alt=""><span>▶</span></div><h4>Green mango curry (amba maluwa)</h4><p>20 min · uses frozen green mango</p></article>
+    <article class="rec"><div class="vid"><img src="img/chilli2.webp" alt=""><span>▶</span></div><h4>Lunu miris with cassava</h4><p>15 min · uses frozen cassava &amp; green chilli</p></article>
+  </div>
+</section>
+
+<section id="enquire" class="enq">
+  <div>
+    <span class="eyebrow">Wholesale &amp; export</span>
+    <h2>Request wholesale information</h2>
+    <p class="lead">Tell us what you need. A named Ceylon First sales contact replies within one business day with pricing, samples and shipping terms.</p>
+    <form class="form" onsubmit="return sendEnquiry(event)">
+      <label>Your enquiry list</label>
+      <ul id="items" class="items"><li class="empty">Use “+ Add to enquiry” on any product</li></ul>
+      <div class="row"><div><label for="co">Company</label><input id="co" placeholder="e.g. Lanka Foods Pty Ltd"></div><div><label for="ct">Country</label><select id="ct"><option>Australia</option><option>New Zealand</option><option>United Kingdom</option><option>Canada</option><option>Other</option></select></div></div>
+      <label>I am a…</label><div class="chips" data-k="role"><span class="on">Importer</span><span>Distributor</span><span>Retailer / grocer</span><span>Food service</span></div>
+      <label>Expected volume</label><div class="chips" data-k="vol"><span>Sample only</span><span class="on">1–5 pallets</span><span>Part container</span><span>Full 40ft reefer</span></div>
+      <div class="row"><div><label for="nm">Name</label><input id="nm" placeholder="Full name"></div><div><label for="em">Email / phone</label><input id="em" placeholder="you@company.com"></div></div>
+      <div class="cta"><button class="btn y" type="submit">Send enquiry via WhatsApp →</button></div>
+      <p class="small">In this mockup the form opens WhatsApp with your details filled in. The live site would also email the sales team.</p>
+    </form>
+  </div>
+  <aside>
+    <div class="card"><span class="eyebrow">Your contact</span><div class="rep"><div class="av">CF</div><div><b>Export sales team</b><br><span>Sinhala · Tamil · English</span><br>+94 77 388 5898</div></div></div>
+    <div class="card"><span class="eyebrow">What happens next</span><ol class="tl"><li><b>Instant confirmation</b>Your list arrives by WhatsApp or email</li><li><b>Within 1 business day</b>Price list, spec sheets and certificates</li><li><b>Samples</b>Sent through our Melbourne distributor</li><li><b>First order</b>Mixed pallet or full container</li></ol></div>
+  </aside>
+</section>
+
+<section id="where" class="where">
+  <div>
+    <span class="eyebrow">Where to buy · Australia</span>
+    <h2>Find Island Fresh near you</h2>
+    <p class="lead">Island Fresh frozen products are sold through our Melbourne distributor and Sri Lankan and South Asian grocers.</p>
+    <div class="store"><div><b>Hospo Fresh, Melbourne distributor</b>Trade &amp; bulk orders · info@hospofresh.com.au</div><span>Distributor</span></div>
+    <div class="store"><div><b>Grocer name, Dandenong*</b>Frozen mango · cassava · jackfruit</div><span>4.2 km</span></div>
+    <div class="store"><div><b>Grocer name, Clayton*</b>Full frozen range</div><span>7.8 km</span></div>
+  </div>
+  <div class="map"><i style="left:46%;top:42%" class="d"></i><i style="left:28%;top:62%"></i><i style="left:63%;top:28%"></i><i style="left:72%;top:66%"></i><div class="search">📍 Enter your suburb or postcode</div></div>
+</section>
+</main>
+
+<footer>
+  <div><b>Ceylon First Exports (Pvt) Ltd</b>No. 1458, Rajina Junction, Lunuwewa Road,<br>Anuradhapura, Thambuththegama, Sri Lanka</div>
+  <div><b>Export sales</b>+94 77 388 5898<br>exports.ceylonfirst@gmail.com</div>
+  <div><b>Certified</b>ISO 22000:2018 · HACCP SLS 1266:2023<br>Ceycert · valid to Dec 2028</div>
+</footer>
+<a class="wa" href="https://wa.me/94773885898" target="_blank" rel="noopener">WhatsApp</a>
+<script src="app.js"></script>
+</body>
+</html>
